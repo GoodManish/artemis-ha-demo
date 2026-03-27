@@ -1,6 +1,10 @@
 package com.example.artemisha.config;
 
-import jakarta.jms.ConnectionFactory;
+import org.apache.activemq.artemis.api.core.TransportConfiguration;
+import org.apache.activemq.artemis.api.core.client.ActiveMQClient;
+import org.apache.activemq.artemis.api.core.client.ServerLocator;
+import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
+import org.apache.activemq.artemis.core.remoting.impl.netty.TransportConstants;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,88 +13,105 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * JMS wiring for Artemis HA.
+ * JMS wiring for Artemis HA — Live + Backup replication.
  *
- * Why we build the ConnectionFactory manually (not relying on auto-config):
- * Spring Boot's auto-config creates a CachingConnectionFactory wrapping
- * the Artemis one, which can hide the failover:// URL parameters.
- * Building it explicitly ensures every HA parameter is honoured.
+ * WHY NOT failover:// URL?
+ *   failover:// is an ActiveMQ Classic (5.x) transport scheme.
+ *   Artemis does NOT support it — passing it to ActiveMQConnectionFactory
+ *   throws "Schema failover not found".
+ *
+ * THE CORRECT ARTEMIS WAY:
+ *   HA failover is configured via the Java API:
+ *     1. TransportConfiguration  — describes each broker host/port
+ *     2. ServerLocator            — built with ha=true + both TransportConfigs
+ *     3. ActiveMQConnectionFactory(ServerLocator) — wraps the locator
+ *
+ *   With ha=true the client connects to the live broker, learns the full
+ *   cluster topology (including backup), and automatically reconnects
+ *   to the backup on failover — no URL scheme needed.
  */
 @EnableJms
 @Configuration
 public class JmsConfig {
 
-    static {
-        // Ensure Artemis transport schemas are registered
-        System.setProperty("org.apache.activemq.artemis.classLoader", "true");
-    }
+    @Value("${artemis.live.host:localhost}")
+    private String liveHost;
 
-    @Value("${spring.artemis.broker-url}")
-    private String brokerUrl;
+    @Value("${artemis.live.port:61616}")
+    private int livePort;
 
-    @Value("${spring.artemis.user}")
+    @Value("${artemis.backup.host:localhost}")
+    private String backupHost;
+
+    @Value("${artemis.backup.port:61617}")
+    private int backupPort;
+
+    @Value("${spring.artemis.user:admin}")
     private String user;
 
-    @Value("${spring.artemis.password}")
+    @Value("${spring.artemis.password:admin}")
     private String password;
 
-    /**
-     * Core connection factory.
-     * The failover:// URL is parsed by the Artemis Netty transport layer.
-     * ha=true makes the client prefer the active (live) node.
-     */
-    @Bean
-    public ActiveMQConnectionFactory connectionFactory() {
-        try {
-            // Create connection factory - this will attempt to parse the brokerUrl
-            ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerUrl);
-            factory.setUser(user);
-            factory.setPassword(password);
-            factory.setRetryInterval(1000L);
-            factory.setReconnectAttempts(-1);  // Retry forever
-            factory.setRetryIntervalMultiplier(1.0);
-            return factory;
-        } catch (Exception e) {
-            System.err.println("Failed to create ActiveMQConnectionFactory: " + e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("Failed to create ActiveMQConnectionFactory with URL: " + brokerUrl, e);
-        }
+    private TransportConfiguration liveTransport() {
+        Map<String, Object> params = new HashMap<>();
+        params.put(TransportConstants.HOST_PROP_NAME, liveHost);
+        params.put(TransportConstants.PORT_PROP_NAME, livePort);
+        return new TransportConfiguration(NettyConnectorFactory.class.getName(), params);
+    }
+
+    private TransportConfiguration backupTransport() {
+        Map<String, Object> params = new HashMap<>();
+        params.put(TransportConstants.HOST_PROP_NAME, backupHost);
+        params.put(TransportConstants.PORT_PROP_NAME, backupPort);
+        return new TransportConfiguration(NettyConnectorFactory.class.getName(), params);
     }
 
     /**
-     * JmsTemplate — used by ProducerService.
-     *
-     * deliveryPersistent=true → JMS PERSISTENT delivery mode.
-     * Messages are written to the broker journal before send() returns,
-     * so they survive failover with zero loss.
+     * ServerLocator with HA enabled.
+     * reconnectAttempts=-1 and initialConnectAttempts=-1 mean retry forever.
      */
+    @Bean(destroyMethod = "close")
+    public ServerLocator serverLocator() throws Exception {
+        ServerLocator locator = ActiveMQClient.createServerLocatorWithHA(
+                liveTransport(),
+                backupTransport()
+        );
+        locator.setReconnectAttempts(-1);
+        locator.setInitialConnectAttempts(-1);
+        locator.setRetryInterval(500);
+        locator.setRetryIntervalMultiplier(1.0);
+//        locator.setHA(true);
+        return locator;
+    }
+
+    @Bean(destroyMethod = "close")
+    public ActiveMQConnectionFactory connectionFactory(ServerLocator serverLocator) throws Exception {
+        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(serverLocator);
+        factory.setUser(user);
+        factory.setPassword(password);
+        return factory;
+    }
+
     @Bean
-    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
+    public JmsTemplate jmsTemplate(ActiveMQConnectionFactory connectionFactory) {
         JmsTemplate template = new JmsTemplate(connectionFactory);
-        template.setDeliveryPersistent(true);   // MUST be true for HA
-        template.setExplicitQosEnabled(true);   // required to honour deliveryPersistent
+        template.setDeliveryPersistent(true);
+        template.setExplicitQosEnabled(true);
         return template;
     }
 
-    /**
-     * Listener container factory — used by @JmsListener in MessageListener.
-     *
-     * sessionTransacted=true → if the broker dies after deliver but before ack,
-     *   the session rolls back and the message is redelivered after reconnect.
-     *
-     * reconnectDelay=1000 → wait 1 second before each reconnect attempt.
-     *
-     * concurrency="1-1" → single consumer thread (sufficient for this demo).
-     *   Use "3-10" in production.
-     */
     @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory) {
-
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(
+            ActiveMQConnectionFactory connectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         factory.setSessionTransacted(true);
 //        factory.setReconnectDelay(1000L);
+        factory.setRecoveryInterval(1000L);
         factory.setConcurrency("1-1");
         return factory;
     }
