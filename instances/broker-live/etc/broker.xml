@@ -53,17 +53,24 @@
     </cluster-connections>
 
     <security-settings>
+      <!-- Default permissions for all addresses -->
       <security-setting match="#">
-        <permission type="createNonDurableQueue" roles="admin"/>
-        <permission type="deleteNonDurableQueue" roles="admin"/>
-        <permission type="createDurableQueue"    roles="admin"/>
-        <permission type="deleteDurableQueue"    roles="admin"/>
-        <permission type="createAddress"         roles="admin"/>
-        <permission type="deleteAddress"         roles="admin"/>
-        <permission type="consume"               roles="admin"/>
-        <permission type="browse"                roles="admin"/>
-        <permission type="send"                  roles="admin"/>
-        <permission type="manage"                roles="admin"/>
+        <permission type="createNonDurableQueue" roles="amq"/>
+        <permission type="deleteNonDurableQueue" roles="amq"/>
+        <permission type="createDurableQueue"    roles="amq"/>
+        <permission type="deleteDurableQueue"    roles="amq"/>
+        <permission type="createAddress"         roles="amq"/>
+        <permission type="deleteAddress"         roles="amq"/>
+        <permission type="consume"               roles="amq"/>
+        <permission type="browse"                roles="amq"/>
+        <permission type="send"                  roles="amq"/>
+        <permission type="manage"                roles="amq"/>
+      </security-setting>
+      <!-- Explicit permissions for demo.queue -->
+      <security-setting match="demo.queue">
+        <permission type="send"                  roles="amq"/>
+        <permission type="consume"               roles="amq"/>
+        <permission type="browse"                roles="amq"/>
       </security-setting>
     </security-settings>
 
