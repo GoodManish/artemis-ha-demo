@@ -1,0 +1,231 @@
+2026-03-27 20:26:19,291 ERROR [org.apache.activemq.artemis.core.client] AMQ214019: Invalid configuration
+org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":replica}'. One of '{"urn:activemq:core":primary, "urn:activemq:core":master, "urn:activemq:core":backup, "urn:activemq:core":slave, "urn:activemq:core":colocated}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at org.apache.activemq.artemis.utils.XMLUtil.validate(XMLUtil.java:371)
+	at org.apache.activemq.artemis.core.config.FileDeploymentManager.readConfiguration(FileDeploymentManager.java:80)
+	at org.apache.activemq.artemis.integration.FileBroker.createComponents(FileBroker.java:123)
+	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:122)
+	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
+	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
+	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
+2026-03-27 20:28:41,521 ERROR [org.apache.activemq.artemis.core.client] AMQ214019: Invalid configuration
+org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":slave}'. One of '{"urn:activemq:core":live-only, "urn:activemq:core":primary-only, "urn:activemq:core":replication, "urn:activemq:core":shared-store}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at org.apache.activemq.artemis.utils.XMLUtil.validate(XMLUtil.java:371)
+	at org.apache.activemq.artemis.core.config.FileDeploymentManager.readConfiguration(FileDeploymentManager.java:80)
+	at org.apache.activemq.artemis.integration.FileBroker.createComponents(FileBroker.java:123)
+	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:122)
+	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
+	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
+	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
+2026-03-27 20:29:59,428 ERROR [org.apache.activemq.artemis.core.client] AMQ214019: Invalid configuration
+org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":replica}'. One of '{"urn:activemq:core":primary, "urn:activemq:core":master, "urn:activemq:core":backup, "urn:activemq:core":slave, "urn:activemq:core":colocated}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at org.apache.activemq.artemis.utils.XMLUtil.validate(XMLUtil.java:371)
+	at org.apache.activemq.artemis.core.config.FileDeploymentManager.readConfiguration(FileDeploymentManager.java:80)
+	at org.apache.activemq.artemis.integration.FileBroker.createComponents(FileBroker.java:123)
+	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:122)
+	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
+	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
+	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
+2026-03-27 21:49:56,369 ERROR [org.apache.activemq.artemis.core.client] AMQ214019: Invalid configuration
+org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":replica}'. One of '{"urn:activemq:core":primary, "urn:activemq:core":master, "urn:activemq:core":backup, "urn:activemq:core":slave, "urn:activemq:core":colocated}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at org.apache.activemq.artemis.utils.XMLUtil.validate(XMLUtil.java:371)
+	at org.apache.activemq.artemis.core.config.FileDeploymentManager.readConfiguration(FileDeploymentManager.java:80)
+	at org.apache.activemq.artemis.integration.FileBroker.createComponents(FileBroker.java:123)
+	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:122)
+	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
+	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
+	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
+2026-03-27 21:53:13,429 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-27 21:53:13,437 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-27 21:53:13,660 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-27 21:53:14,012 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Backup message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-27 21:53:14,034 INFO  [org.apache.activemq.artemis.core.server] AMQ222162: Moving data directory C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-backup\data\journal to C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-backup\data\journal\oldreplica.1
+2026-03-27 21:53:14,093 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-27 21:53:14,136 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-27 21:53:14,188 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-27 21:53:14,265 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-27 21:53:14,266 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-27 21:53:14,267 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-27 21:53:14,268 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-27 21:53:14,269 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-27 21:53:14,270 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-27 21:53:14,668 INFO  [org.apache.activemq.artemis.core.server] AMQ221109: Apache Artemis Backup Server version 2.53.0 [null] started; waiting for primary to fail before activating
+2026-03-27 21:53:15,645 INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveMQServerImpl::name=backup-broker is synchronized with primary server, nodeID=01b5be99-29ea-11f1-a633-0a0027000016.
+2026-03-27 21:53:15,660 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
+2026-03-27 21:57:14,610 ERROR [org.apache.activemq.artemis.core.deployers.impl.FileConfigurationParser] cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":web}'. One of '{"urn:activemq:core":system-property-prefix, "urn:activemq:core":internal-naming-prefix, "urn:activemq:core":amqp-use-core-subscription-naming, "urn:activemq:core":resolve-protocols, "urn:activemq:core":journal-datasync, "urn:activemq:core":large-message-sync, "urn:activemq:core":scheduled-thread-pool-max-size, "urn:activemq:core":thread-pool-max-size, "urn:activemq:core":graceful-shutdown-enabled, "urn:activemq:core":graceful-shutdown-timeout, "urn:activemq:core":security-enabled, "urn:activemq:core":security-invalidation-interval, "urn:activemq:core":authentication-cache-size, "urn:activemq:core":authorization-cache-size, "urn:activemq:core":journal-lock-acquisition-timeout, "urn:activemq:core":wild-card-routing-enabled, "urn:activemq:core":management-address, "urn:activemq:core":management-notification-address, "urn:activemq:core":cluster-user, "urn:activemq:core":cluster-password, "urn:activemq:core":password-codec, "urn:activemq:core":mask-password, "urn:activemq:core":log-delegate-factory-class-name, "urn:activemq:core":jmx-management-enabled, "urn:activemq:core":jmx-notification-enabled, "urn:activemq:core":jmx-domain, "urn:activemq:core":jmx-use-broker-name, "urn:activemq:core":message-counter-enabled, "urn:activemq:core":message-counter-sample-period, "urn:activemq:core":message-counter-max-day-history, "urn:activemq:core":connection-ttl-override, "urn:activemq:core":connection-ttl-check-interval, "urn:activemq:core":configuration-file-refresh-period, "urn:activemq:core":temporary-queue-namespace, "urn:activemq:core":uuid-namespace, "urn:activemq:core":async-connection-execution-enabled, "urn:activemq:core":transaction-timeout, "urn:activemq:core":transaction-timeout-scan-period, "urn:activemq:core":message-expiry-scan-period, "urn:activemq:core":message-expiry-thread-priority, "urn:activemq:core":address-queue-scan-period, "urn:activemq:core":id-cache-size, "urn:activemq:core":persist-id-cache, "urn:activemq:core":remoting-incoming-interceptors, "urn:activemq:core":remoting-outgoing-interceptors, "urn:activemq:core":persist-delivery-count-before-delivery, "urn:activemq:core":max-redelivery-records, "urn:activemq:core":populate-validated-user, "urn:activemq:core":reject-empty-validated-user, "urn:activemq:core":mqtt-session-scan-interval, "urn:activemq:core":mqtt-session-state-persistence-timeout, "urn:activemq:core":mqtt-subscription-persistence-enabled, "urn:activemq:core":broadcast-groups, "urn:activemq:core":discovery-groups, "urn:activemq:core":diverts, "urn:activemq:core":queues, "urn:activemq:core":lock-coordinators, "urn:activemq:core":bridges, "urn:activemq:core":federations, "urn:activemq:core":broker-connections, "urn:activemq:core":connection-routers, "urn:activemq:core":grouping-handler, "urn:activemq:core":purge-page-folders, "urn:activemq:core":paging-directory, "urn:activemq:core":create-bindings-dir, "urn:activemq:core":page-max-concurrent-io, "urn:activemq:core":read-whole-page, "urn:activemq:core":journal-retention-directory, "urn:activemq:core":node-manager-lock-directory, "urn:activemq:core":create-journal-dir, "urn:activemq:core":journal-type, "urn:activemq:core":journal-buffer-timeout, "urn:activemq:core":journal-device-block-size, "urn:activemq:core":journal-buffer-size, "urn:activemq:core":journal-sync-transactional, "urn:activemq:core":journal-sync-non-transactional, "urn:activemq:core":log-journal-write-rate, "urn:activemq:core":journal-file-size, "urn:activemq:core":journal-min-files, "urn:activemq:core":journal-pool-files, "urn:activemq:core":journal-compact-percentage, "urn:activemq:core":journal-compact-min-files, "urn:activemq:core":journal-max-io, "urn:activemq:core":journal-file-open-timeout, "urn:activemq:core":server-dump-interval, "urn:activemq:core":global-max-messages, "urn:activemq:core":global-max-size-percent-of-jvm-max-memory, "urn:activemq:core":global-max-size, "urn:activemq:core":max-disk-usage, "urn:activemq:core":min-disk-free, "urn:activemq:core":disk-scan-period, "urn:activemq:core":memory-warning-threshold, "urn:activemq:core":memory-measure-interval, "urn:activemq:core":store, "urn:activemq:core":critical-analyzer, "urn:activemq:core":critical-analyzer-timeout, "urn:activemq:core":critical-analyzer-check-period, "urn:activemq:core":critical-analyzer-policy, "urn:activemq:core":page-sync-timeout, "urn:activemq:core":mirror-ack-manager-queue-attempts, "urn:activemq:core":mirror-ack-manager-page-attempts, "urn:activemq:core":mirror-ack-manager-retry-delay, "urn:activemq:core":mirror-ack-manager-warn-unacked, "urn:activemq:core":mirror-page-transaction, "urn:activemq:core":suppress-session-notifications, "urn:activemq:core":literal-match-markers, "urn:activemq:core":view-permission-method-match-pattern, "urn:activemq:core":management-message-rbac, "urn:activemq:core":management-rbac-prefix, "urn:activemq:core":broker-plugins, "urn:activemq:core":metrics-plugin, "urn:activemq:core":metrics, "urn:activemq:core":address-settings, "urn:activemq:core":resource-limit-settings, "urn:activemq:core":connector-services, "urn:activemq:core":network-check-list, "urn:activemq:core":network-check-URL-list, "urn:activemq:core":network-check-period, "urn:activemq:core":network-check-timeout, "urn:activemq:core":network-check-NIC, "urn:activemq:core":network-check-ping-command, "urn:activemq:core":network-check-ping6-command, "urn:activemq:core":wildcard-addresses}' is expected.
+org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":web}'. One of '{"urn:activemq:core":system-property-prefix, "urn:activemq:core":internal-naming-prefix, "urn:activemq:core":amqp-use-core-subscription-naming, "urn:activemq:core":resolve-protocols, "urn:activemq:core":journal-datasync, "urn:activemq:core":large-message-sync, "urn:activemq:core":scheduled-thread-pool-max-size, "urn:activemq:core":thread-pool-max-size, "urn:activemq:core":graceful-shutdown-enabled, "urn:activemq:core":graceful-shutdown-timeout, "urn:activemq:core":security-enabled, "urn:activemq:core":security-invalidation-interval, "urn:activemq:core":authentication-cache-size, "urn:activemq:core":authorization-cache-size, "urn:activemq:core":journal-lock-acquisition-timeout, "urn:activemq:core":wild-card-routing-enabled, "urn:activemq:core":management-address, "urn:activemq:core":management-notification-address, "urn:activemq:core":cluster-user, "urn:activemq:core":cluster-password, "urn:activemq:core":password-codec, "urn:activemq:core":mask-password, "urn:activemq:core":log-delegate-factory-class-name, "urn:activemq:core":jmx-management-enabled, "urn:activemq:core":jmx-notification-enabled, "urn:activemq:core":jmx-domain, "urn:activemq:core":jmx-use-broker-name, "urn:activemq:core":message-counter-enabled, "urn:activemq:core":message-counter-sample-period, "urn:activemq:core":message-counter-max-day-history, "urn:activemq:core":connection-ttl-override, "urn:activemq:core":connection-ttl-check-interval, "urn:activemq:core":configuration-file-refresh-period, "urn:activemq:core":temporary-queue-namespace, "urn:activemq:core":uuid-namespace, "urn:activemq:core":async-connection-execution-enabled, "urn:activemq:core":transaction-timeout, "urn:activemq:core":transaction-timeout-scan-period, "urn:activemq:core":message-expiry-scan-period, "urn:activemq:core":message-expiry-thread-priority, "urn:activemq:core":address-queue-scan-period, "urn:activemq:core":id-cache-size, "urn:activemq:core":persist-id-cache, "urn:activemq:core":remoting-incoming-interceptors, "urn:activemq:core":remoting-outgoing-interceptors, "urn:activemq:core":persist-delivery-count-before-delivery, "urn:activemq:core":max-redelivery-records, "urn:activemq:core":populate-validated-user, "urn:activemq:core":reject-empty-validated-user, "urn:activemq:core":mqtt-session-scan-interval, "urn:activemq:core":mqtt-session-state-persistence-timeout, "urn:activemq:core":mqtt-subscription-persistence-enabled, "urn:activemq:core":broadcast-groups, "urn:activemq:core":discovery-groups, "urn:activemq:core":diverts, "urn:activemq:core":queues, "urn:activemq:core":lock-coordinators, "urn:activemq:core":bridges, "urn:activemq:core":federations, "urn:activemq:core":broker-connections, "urn:activemq:core":connection-routers, "urn:activemq:core":grouping-handler, "urn:activemq:core":purge-page-folders, "urn:activemq:core":paging-directory, "urn:activemq:core":create-bindings-dir, "urn:activemq:core":page-max-concurrent-io, "urn:activemq:core":read-whole-page, "urn:activemq:core":journal-retention-directory, "urn:activemq:core":node-manager-lock-directory, "urn:activemq:core":create-journal-dir, "urn:activemq:core":journal-type, "urn:activemq:core":journal-buffer-timeout, "urn:activemq:core":journal-device-block-size, "urn:activemq:core":journal-buffer-size, "urn:activemq:core":journal-sync-transactional, "urn:activemq:core":journal-sync-non-transactional, "urn:activemq:core":log-journal-write-rate, "urn:activemq:core":journal-file-size, "urn:activemq:core":journal-min-files, "urn:activemq:core":journal-pool-files, "urn:activemq:core":journal-compact-percentage, "urn:activemq:core":journal-compact-min-files, "urn:activemq:core":journal-max-io, "urn:activemq:core":journal-file-open-timeout, "urn:activemq:core":server-dump-interval, "urn:activemq:core":global-max-messages, "urn:activemq:core":global-max-size-percent-of-jvm-max-memory, "urn:activemq:core":global-max-size, "urn:activemq:core":max-disk-usage, "urn:activemq:core":min-disk-free, "urn:activemq:core":disk-scan-period, "urn:activemq:core":memory-warning-threshold, "urn:activemq:core":memory-measure-interval, "urn:activemq:core":store, "urn:activemq:core":critical-analyzer, "urn:activemq:core":critical-analyzer-timeout, "urn:activemq:core":critical-analyzer-check-period, "urn:activemq:core":critical-analyzer-policy, "urn:activemq:core":page-sync-timeout, "urn:activemq:core":mirror-ack-manager-queue-attempts, "urn:activemq:core":mirror-ack-manager-page-attempts, "urn:activemq:core":mirror-ack-manager-retry-delay, "urn:activemq:core":mirror-ack-manager-warn-unacked, "urn:activemq:core":mirror-page-transaction, "urn:activemq:core":suppress-session-notifications, "urn:activemq:core":literal-match-markers, "urn:activemq:core":view-permission-method-match-pattern, "urn:activemq:core":management-message-rbac, "urn:activemq:core":management-rbac-prefix, "urn:activemq:core":broker-plugins, "urn:activemq:core":metrics-plugin, "urn:activemq:core":metrics, "urn:activemq:core":address-settings, "urn:activemq:core":resource-limit-settings, "urn:activemq:core":connector-services, "urn:activemq:core":network-check-list, "urn:activemq:core":network-check-URL-list, "urn:activemq:core":network-check-period, "urn:activemq:core":network-check-timeout, "urn:activemq:core":network-check-NIC, "urn:activemq:core":network-check-ping-command, "urn:activemq:core":network-check-ping6-command, "urn:activemq:core":wildcard-addresses}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at org.apache.activemq.artemis.core.deployers.impl.FileConfigurationParser.parseMainConfig(FileConfigurationParser.java:418)
+	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.reloadConfigurationFile(ActiveMQServerImpl.java:4697)
+	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.lambda$initialisePart1$0(ActiveMQServerImpl.java:3447)
+	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl$ReloadRegistry.check(ReloadManagerImpl.java:136)
+	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl.tick(ReloadManagerImpl.java:77)
+	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl.run(ReloadManagerImpl.java:49)
+	at org.apache.activemq.artemis.core.server.ActiveMQScheduledComponent.runForExecutor(ActiveMQScheduledComponent.java:327)
+	at org.apache.activemq.artemis.core.server.ActiveMQScheduledComponent.lambda$bookedRunForScheduler$0(ActiveMQScheduledComponent.java:334)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
+	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
+2026-03-27 21:57:14,640 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-27 21:57:23,641 INFO  [org.apache.activemq.artemis.core.server] AMQ224135: nodeID 01b5be99-29ea-11f1-a633-0a0027000016 is closing. Topology update ignored
+2026-03-27 21:57:23,642 INFO  [org.apache.activemq.artemis.core.server] AMQ221066: Initiating quorum vote: PrimaryFailoverQuorumVote
+2026-03-27 21:57:23,646 INFO  [org.apache.activemq.artemis.core.server] AMQ221084: Requested 0 quorum votes
+2026-03-27 21:57:23,658 INFO  [org.apache.activemq.artemis.core.server] AMQ221083: ignoring quorum vote as max cluster size is 1.
+2026-03-27 21:57:23,658 INFO  [org.apache.activemq.artemis.core.server] AMQ221071: Failing over based on quorum vote results.
+2026-03-27 21:57:23,662 INFO  [org.apache.activemq.artemis.core.client] AMQ214036: Connection closure to localhost/127.0.0.1:61616 has been detected: AMQ219015: The connection was disconnected because of server shutdown [code=DISCONNECTED]
+2026-03-27 21:57:23,662 INFO  [org.apache.activemq.artemis.core.client] AMQ214036: Connection closure to localhost/127.0.0.1:61616 has been detected: AMQ219015: The connection was disconnected because of server shutdown [code=DISCONNECTED]
+2026-03-27 21:57:23,679 INFO  [org.apache.activemq.artemis.core.server] AMQ221037: ActiveMQServerImpl::name=backup-broker to become 'active'
+2026-03-27 21:57:23,848 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-27 21:57:23,864 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-27 21:57:24,076 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-27 21:57:24,079 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-27 21:57:24,089 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: security settings
+2026-03-27 21:57:24,090 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: address settings
+2026-03-27 21:57:24,090 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-27 21:57:24,091 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-27 21:57:24,094 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: diverts
+2026-03-27 21:57:24,102 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: addresses
+2026-03-27 21:57:24,103 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-27 21:57:24,103 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-27 21:57:24,104 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: connection routers
+2026-03-27 21:57:24,108 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: protocol services
+2026-03-27 21:57:24,422 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
+2026-03-27 21:57:24,489 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61617 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
+2026-03-27 21:57:56,004 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [01b5be99-29ea-11f1-a633-0a0027000016] stopped, uptime 4 minutes
+2026-03-27 21:58:06,615 ERROR [org.apache.activemq.artemis.core.client] AMQ214019: Invalid configuration
+org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":web}'. One of '{"urn:activemq:core":system-property-prefix, "urn:activemq:core":internal-naming-prefix, "urn:activemq:core":amqp-use-core-subscription-naming, "urn:activemq:core":resolve-protocols, "urn:activemq:core":journal-datasync, "urn:activemq:core":large-message-sync, "urn:activemq:core":scheduled-thread-pool-max-size, "urn:activemq:core":thread-pool-max-size, "urn:activemq:core":graceful-shutdown-enabled, "urn:activemq:core":graceful-shutdown-timeout, "urn:activemq:core":security-enabled, "urn:activemq:core":security-invalidation-interval, "urn:activemq:core":authentication-cache-size, "urn:activemq:core":authorization-cache-size, "urn:activemq:core":journal-lock-acquisition-timeout, "urn:activemq:core":wild-card-routing-enabled, "urn:activemq:core":management-address, "urn:activemq:core":management-notification-address, "urn:activemq:core":cluster-user, "urn:activemq:core":cluster-password, "urn:activemq:core":password-codec, "urn:activemq:core":mask-password, "urn:activemq:core":log-delegate-factory-class-name, "urn:activemq:core":jmx-management-enabled, "urn:activemq:core":jmx-notification-enabled, "urn:activemq:core":jmx-domain, "urn:activemq:core":jmx-use-broker-name, "urn:activemq:core":message-counter-enabled, "urn:activemq:core":message-counter-sample-period, "urn:activemq:core":message-counter-max-day-history, "urn:activemq:core":connection-ttl-override, "urn:activemq:core":connection-ttl-check-interval, "urn:activemq:core":configuration-file-refresh-period, "urn:activemq:core":temporary-queue-namespace, "urn:activemq:core":uuid-namespace, "urn:activemq:core":async-connection-execution-enabled, "urn:activemq:core":transaction-timeout, "urn:activemq:core":transaction-timeout-scan-period, "urn:activemq:core":message-expiry-scan-period, "urn:activemq:core":message-expiry-thread-priority, "urn:activemq:core":address-queue-scan-period, "urn:activemq:core":id-cache-size, "urn:activemq:core":persist-id-cache, "urn:activemq:core":remoting-incoming-interceptors, "urn:activemq:core":remoting-outgoing-interceptors, "urn:activemq:core":persist-delivery-count-before-delivery, "urn:activemq:core":max-redelivery-records, "urn:activemq:core":populate-validated-user, "urn:activemq:core":reject-empty-validated-user, "urn:activemq:core":mqtt-session-scan-interval, "urn:activemq:core":mqtt-session-state-persistence-timeout, "urn:activemq:core":mqtt-subscription-persistence-enabled, "urn:activemq:core":broadcast-groups, "urn:activemq:core":discovery-groups, "urn:activemq:core":diverts, "urn:activemq:core":queues, "urn:activemq:core":lock-coordinators, "urn:activemq:core":bridges, "urn:activemq:core":federations, "urn:activemq:core":broker-connections, "urn:activemq:core":connection-routers, "urn:activemq:core":grouping-handler, "urn:activemq:core":purge-page-folders, "urn:activemq:core":paging-directory, "urn:activemq:core":create-bindings-dir, "urn:activemq:core":page-max-concurrent-io, "urn:activemq:core":read-whole-page, "urn:activemq:core":journal-retention-directory, "urn:activemq:core":node-manager-lock-directory, "urn:activemq:core":create-journal-dir, "urn:activemq:core":journal-type, "urn:activemq:core":journal-buffer-timeout, "urn:activemq:core":journal-device-block-size, "urn:activemq:core":journal-buffer-size, "urn:activemq:core":journal-sync-transactional, "urn:activemq:core":journal-sync-non-transactional, "urn:activemq:core":log-journal-write-rate, "urn:activemq:core":journal-file-size, "urn:activemq:core":journal-min-files, "urn:activemq:core":journal-pool-files, "urn:activemq:core":journal-compact-percentage, "urn:activemq:core":journal-compact-min-files, "urn:activemq:core":journal-max-io, "urn:activemq:core":journal-file-open-timeout, "urn:activemq:core":server-dump-interval, "urn:activemq:core":global-max-messages, "urn:activemq:core":global-max-size-percent-of-jvm-max-memory, "urn:activemq:core":global-max-size, "urn:activemq:core":max-disk-usage, "urn:activemq:core":min-disk-free, "urn:activemq:core":disk-scan-period, "urn:activemq:core":memory-warning-threshold, "urn:activemq:core":memory-measure-interval, "urn:activemq:core":store, "urn:activemq:core":critical-analyzer, "urn:activemq:core":critical-analyzer-timeout, "urn:activemq:core":critical-analyzer-check-period, "urn:activemq:core":critical-analyzer-policy, "urn:activemq:core":page-sync-timeout, "urn:activemq:core":mirror-ack-manager-queue-attempts, "urn:activemq:core":mirror-ack-manager-page-attempts, "urn:activemq:core":mirror-ack-manager-retry-delay, "urn:activemq:core":mirror-ack-manager-warn-unacked, "urn:activemq:core":mirror-page-transaction, "urn:activemq:core":suppress-session-notifications, "urn:activemq:core":literal-match-markers, "urn:activemq:core":view-permission-method-match-pattern, "urn:activemq:core":management-message-rbac, "urn:activemq:core":management-rbac-prefix, "urn:activemq:core":broker-plugins, "urn:activemq:core":metrics-plugin, "urn:activemq:core":metrics, "urn:activemq:core":address-settings, "urn:activemq:core":resource-limit-settings, "urn:activemq:core":connector-services, "urn:activemq:core":network-check-list, "urn:activemq:core":network-check-URL-list, "urn:activemq:core":network-check-period, "urn:activemq:core":network-check-timeout, "urn:activemq:core":network-check-NIC, "urn:activemq:core":network-check-ping-command, "urn:activemq:core":network-check-ping6-command, "urn:activemq:core":wildcard-addresses}' is expected.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
+	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
+	at org.apache.activemq.artemis.utils.XMLUtil.validate(XMLUtil.java:371)
+	at org.apache.activemq.artemis.core.config.FileDeploymentManager.readConfiguration(FileDeploymentManager.java:80)
+	at org.apache.activemq.artemis.integration.FileBroker.createComponents(FileBroker.java:123)
+	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:122)
+	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
+	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
+	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
+2026-03-27 22:00:49,605 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-27 22:00:49,617 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-27 22:00:49,929 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-27 22:00:50,047 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Backup message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-27 22:00:50,088 INFO  [org.apache.activemq.artemis.core.server] AMQ222162: Moving data directory C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-backup\data\bindings to C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-backup\data\bindings\oldreplica.1
+2026-03-27 22:00:50,097 INFO  [org.apache.activemq.artemis.core.server] AMQ222162: Moving data directory C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-backup\data\journal to C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-backup\data\journal\oldreplica.2
+2026-03-27 22:00:50,172 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-27 22:00:50,238 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-27 22:00:50,339 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-27 22:00:50,762 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-27 22:00:50,765 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-27 22:00:50,766 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-27 22:00:50,773 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-27 22:00:50,774 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-27 22:00:50,774 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-27 22:00:51,204 INFO  [org.apache.activemq.artemis.core.server] AMQ221109: Apache Artemis Backup Server version 2.53.0 [null] started; waiting for primary to fail before activating
+2026-03-27 22:00:51,972 INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveMQServerImpl::name=backup-broker is synchronized with primary server, nodeID=01b5be99-29ea-11f1-a633-0a0027000016.
+2026-03-27 22:00:51,997 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
