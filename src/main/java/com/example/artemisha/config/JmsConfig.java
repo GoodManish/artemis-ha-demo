@@ -1,5 +1,6 @@
 package com.example.artemisha.config;
 
+import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,11 @@ import org.springframework.jms.core.JmsTemplate;
 @Configuration
 public class JmsConfig {
 
+    static {
+        // Ensure Artemis transport schemas are registered
+        System.setProperty("org.apache.activemq.artemis.classLoader", "true");
+    }
+
     @Value("${spring.artemis.broker-url}")
     private String brokerUrl;
 
@@ -36,11 +42,20 @@ public class JmsConfig {
      */
     @Bean
     public ActiveMQConnectionFactory connectionFactory() {
-        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerUrl);
-        factory.setUser(user);
-        factory.setPassword(password);
-        factory.setRetryInterval(1000L);
-        return factory;
+        try {
+            // Create connection factory - this will attempt to parse the brokerUrl
+            ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerUrl);
+            factory.setUser(user);
+            factory.setPassword(password);
+            factory.setRetryInterval(1000L);
+            factory.setReconnectAttempts(-1);  // Retry forever
+            factory.setRetryIntervalMultiplier(1.0);
+            return factory;
+        } catch (Exception e) {
+            System.err.println("Failed to create ActiveMQConnectionFactory: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Failed to create ActiveMQConnectionFactory with URL: " + brokerUrl, e);
+        }
     }
 
     /**
@@ -51,8 +66,8 @@ public class JmsConfig {
      * so they survive failover with zero loss.
      */
     @Bean
-    public JmsTemplate jmsTemplate(ActiveMQConnectionFactory connectionFactory) {
-        JmsTemplate template = new JmsTemplate((jakarta.jms.ConnectionFactory) connectionFactory);
+    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) {
+        JmsTemplate template = new JmsTemplate(connectionFactory);
         template.setDeliveryPersistent(true);   // MUST be true for HA
         template.setExplicitQosEnabled(true);   // required to honour deliveryPersistent
         return template;
@@ -70,10 +85,10 @@ public class JmsConfig {
      *   Use "3-10" in production.
      */
     @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ActiveMQConnectionFactory connectionFactory) {
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory) {
 
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory((jakarta.jms.ConnectionFactory) connectionFactory);
+        factory.setConnectionFactory(connectionFactory);
         factory.setSessionTransacted(true);
 //        factory.setReconnectDelay(1000L);
         factory.setConcurrency("1-1");

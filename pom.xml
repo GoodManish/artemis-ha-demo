@@ -73,6 +73,34 @@
             <version>${artemis.version}</version>
         </dependency>
 
+        <!-- ── Artemis Core Client (required for failover transport) ── -->
+        <dependency>
+            <groupId>org.apache.artemis</groupId>
+            <artifactId>artemis-core-client</artifactId>
+            <version>${artemis.version}</version>
+        </dependency>
+
+        <!-- ── Artemis OpenWire Protocol (required for failover:// scheme) ── -->
+        <dependency>
+            <groupId>org.apache.artemis</groupId>
+            <artifactId>artemis-openwire-protocol</artifactId>
+            <version>${artemis.version}</version>
+        </dependency>
+
+        <!-- ── Artemis Commons ── -->
+        <dependency>
+            <groupId>org.apache.artemis</groupId>
+            <artifactId>artemis-commons</artifactId>
+            <version>${artemis.version}</version>
+        </dependency>
+
+        <!-- ── Artemis Selector ── -->
+        <dependency>
+            <groupId>org.apache.artemis</groupId>
+            <artifactId>artemis-selector</artifactId>
+            <version>${artemis.version}</version>
+        </dependency>
+
         <!-- ── Jakarta JMS API ────────────────────────────────── -->
         <dependency>
             <groupId>jakarta.jms</groupId>
