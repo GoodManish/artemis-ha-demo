@@ -6,15 +6,19 @@ import org.apache.activemq.artemis.api.core.client.ServerLocator;
 import org.apache.activemq.artemis.core.remoting.impl.netty.NettyConnectorFactory;
 import org.apache.activemq.artemis.core.remoting.impl.netty.TransportConstants;
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
+import org.apache.activemq.artemis.api.core.client.ClusterTopologyListener;
+import org.apache.activemq.artemis.api.core.client.TopologyMember;
+import org.slf4j.LoggerFactory;
+import java.util.Map;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * JMS wiring for Artemis HA — Live + Backup replication.
@@ -84,7 +88,35 @@ public class JmsConfig {
         locator.setInitialConnectAttempts(-1);
         locator.setRetryInterval(500);
         locator.setRetryIntervalMultiplier(1.0);
-//        locator.setHA(true);
+
+        // ClusterTopologyListener — fires on connect and every failover
+        // TransportConfiguration.getParams() gives you the host/port map
+        locator.addClusterTopologyListener(new ClusterTopologyListener() {
+            private static final Logger log = LoggerFactory.getLogger("BrokerTopology");
+
+            @Override
+            public void nodeUP(TopologyMember member, boolean last) {
+                String primary = formatTransport(member.getPrimary());
+                String backup  = formatTransport(member.getBackup());
+                log.info("NODE UP  >> primary={} backup={} nodeId={}",
+                        primary, backup, member.getNodeId());
+            }
+
+            @Override
+            public void nodeDown(long eventUID, String nodeID) {
+                log.warn("NODE DOWN >> nodeId={}", nodeID);
+            }
+
+            // TransportConfiguration params are a Map<String,Object>
+            // Keys are TransportConstants.HOST_PROP_NAME and PORT_PROP_NAME
+            private String formatTransport(TransportConfiguration tc) {
+                if (tc == null) return "none";
+                Map<String, Object> p = tc.getParams();
+                return p.get(TransportConstants.HOST_PROP_NAME)
+                        + ":" + p.get(TransportConstants.PORT_PROP_NAME);
+            }
+        });
+
         return locator;
     }
 
