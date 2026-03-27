@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
-  LIVE (PRIMARY) BROKER
-  ─────────────────────
+  BACKUP (REPLICA) BROKER
+  ────────────────────────
   Copy this file to:
-    apache-artemis-2.53.0\instances\broker-live\etc\broker.xml
+    apache-artemis-2.53.0\instances\broker-backup\etc\broker.xml
 
-  Port : 61616
-  Role : PRIMARY — accepts all client connections
+  Port : 61617
+  Role : REPLICA — standby; promotes to live on failover
 -->
 <configuration xmlns="urn:activemq"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,7 +14,7 @@
 
   <core xmlns="urn:activemq:core">
 
-    <name>live-broker</name>
+    <name>backup-broker</name>
 
     <persistence-enabled>true</persistence-enabled>
     <journal-directory>data/journal</journal-directory>
@@ -22,32 +22,32 @@
     <large-messages-directory>data/large-messages</large-messages-directory>
 
     <connectors>
-      <connector name="live-connector">tcp://localhost:61616</connector>
       <connector name="backup-connector">tcp://localhost:61617</connector>
+      <connector name="live-connector">tcp://localhost:61616</connector>
     </connectors>
 
     <acceptors>
-      <acceptor name="netty-acceptor">tcp://localhost:61616</acceptor>
+      <acceptor name="netty-acceptor">tcp://localhost:61617</acceptor>
     </acceptors>
 
-    <!-- HA: this broker is the PRIMARY -->
+    <!-- HA: this broker is the REPLICA (backup) -->
     <ha-policy>
       <replication>
-        <primary>
-          <check-for-active-server>true</check-for-active-server>
-        </primary>
+        <backup>
+          <allow-failback>true</allow-failback>
+        </backup>
       </replication>
     </ha-policy>
 
     <cluster-connections>
       <cluster-connection name="my-cluster">
-        <connector-ref>live-connector</connector-ref>
+        <connector-ref>backup-connector</connector-ref>
         <retry-interval>500</retry-interval>
         <use-duplicate-detection>true</use-duplicate-detection>
         <message-load-balancing>STRICT</message-load-balancing>
         <max-hops>1</max-hops>
         <static-connectors>
-          <connector-ref>backup-connector</connector-ref>
+          <connector-ref>live-connector</connector-ref>
         </static-connectors>
       </cluster-connection>
     </cluster-connections>
@@ -78,4 +78,11 @@
     </addresses>
 
   </core>
+
+  <web bind="http://localhost:8162" path="web">
+    <app url="activemq-branding" war="activemq-branding.war"/>
+    <app url="artemis-plugin" war="artemis-plugin.war"/>
+    <app url="console" war="console.war"/>
+  </web>
+
 </configuration>

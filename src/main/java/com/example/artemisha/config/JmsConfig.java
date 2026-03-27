@@ -12,9 +12,9 @@ import org.springframework.jms.core.JmsTemplate;
  * JMS wiring for Artemis HA.
  *
  * Why we build the ConnectionFactory manually (not relying on auto-config):
- *   Spring Boot's auto-config creates a CachingConnectionFactory wrapping
- *   the Artemis one, which can hide the failover:// URL parameters.
- *   Building it explicitly ensures every HA parameter is honoured.
+ * Spring Boot's auto-config creates a CachingConnectionFactory wrapping
+ * the Artemis one, which can hide the failover:// URL parameters.
+ * Building it explicitly ensures every HA parameter is honoured.
  */
 @EnableJms
 @Configuration
@@ -39,6 +39,7 @@ public class JmsConfig {
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerUrl);
         factory.setUser(user);
         factory.setPassword(password);
+        factory.setRetryInterval(1000L);
         return factory;
     }
 
@@ -51,7 +52,7 @@ public class JmsConfig {
      */
     @Bean
     public JmsTemplate jmsTemplate(ActiveMQConnectionFactory connectionFactory) {
-        JmsTemplate template = new JmsTemplate(connectionFactory);
+        JmsTemplate template = new JmsTemplate((jakarta.jms.ConnectionFactory) connectionFactory);
         template.setDeliveryPersistent(true);   // MUST be true for HA
         template.setExplicitQosEnabled(true);   // required to honour deliveryPersistent
         return template;
@@ -69,13 +70,12 @@ public class JmsConfig {
      *   Use "3-10" in production.
      */
     @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(
-            ActiveMQConnectionFactory connectionFactory) {
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ActiveMQConnectionFactory connectionFactory) {
 
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
+        factory.setConnectionFactory((jakarta.jms.ConnectionFactory) connectionFactory);
         factory.setSessionTransacted(true);
-        factory.setReconnectDelay(1000L);
+//        factory.setReconnectDelay(1000L);
         factory.setConcurrency("1-1");
         return factory;
     }

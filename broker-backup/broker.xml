@@ -14,7 +14,7 @@
 
   <core xmlns="urn:activemq:core">
 
-    <n>backup-broker</n>
+    <name>backup-broker</name>
 
     <persistence-enabled>true</persistence-enabled>
     <journal-directory>data/journal</journal-directory>
@@ -41,23 +41,6 @@
       </replication>
     </ha-policy>
 
-    <broadcast-groups>
-      <broadcast-group name="bg-group">
-        <broadcast-period>5000</broadcast-period>
-        <jgroups-file>test-jgroups-udp.xml</jgroups-file>
-        <jgroups-channel>active_broadcast_channel</jgroups-channel>
-        <connector-ref>backup-connector</connector-ref>
-      </broadcast-group>
-    </broadcast-groups>
-
-    <discovery-groups>
-      <discovery-group name="dg-group">
-        <jgroups-file>test-jgroups-udp.xml</jgroups-file>
-        <jgroups-channel>active_broadcast_channel</jgroups-channel>
-        <refresh-timeout>10000</refresh-timeout>
-      </discovery-group>
-    </discovery-groups>
-
     <cluster-connections>
       <cluster-connection name="my-cluster">
         <connector-ref>backup-connector</connector-ref>
@@ -65,7 +48,9 @@
         <use-duplicate-detection>true</use-duplicate-detection>
         <message-load-balancing>STRICT</message-load-balancing>
         <max-hops>1</max-hops>
-        <discovery-group-ref discovery-group-name="dg-group"/>
+        <static-connectors>
+          <connector-ref>live-connector</connector-ref>
+        </static-connectors>
       </cluster-connection>
     </cluster-connections>
 
