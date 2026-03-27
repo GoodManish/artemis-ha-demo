@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+        Spring Boot 3.3.x + Java 21 + Artemis 2.53.0
+
+        Spring Boot 3.3 manages artemis-jms-client at ~2.37 by default.
+        We override that via <artemis.version> to exactly match the
+        2.53.0 broker binary you have extracted on disk.
+        This ensures the client wire protocol matches the broker.
+    -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.4</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>artemis-ha-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>artemis-ha-demo</name>
+    <description>ActiveMQ Artemis 2.53.0 Live/Backup HA Replication with Spring Boot 3.3 / Java 21</description>
+
+    <properties>
+        <java.version>21</java.version>
+
+        <!--
+            Override Spring Boot's default Artemis client version
+            to exactly match the broker binary (apache-artemis-2.53.0).
+            All three artemis-* dependencies below use this property.
+        -->
+        <artemis.version>2.53.0</artemis.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- ── Core Spring Boot ─────────────────────────────────── -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- ── Spring JMS + Artemis auto-configuration ─────────── -->
+        <!--
+            Pulls in:
+              - spring-jms
+              - jakarta.jms-api
+              - Spring Boot Artemis auto-config
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-artemis</artifactId>
+        </dependency>
+
+        <!-- ── Artemis JMS client (native transport) ────────────── -->
+        <!--
+            Provides:
+              - ActiveMQConnectionFactory
+              - failover:// transport
+              - Netty network layer
+            Version is controlled by <artemis.version> above.
+        -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>artemis-jms-client</artifactId>
+            <version>${artemis.version}</version>
+        </dependency>
+
+        <!--
+            artemis-jakarta-client is the Jakarta EE 10 variant required
+            by Spring Boot 3.x (which uses jakarta.* namespace, not javax.*).
+            This gives us the correct JMS 3.1 API compatibility.
+        -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>artemis-jakarta-client</artifactId>
+            <version>${artemis.version}</version>
+            <exclusions>
+                <!-- Avoid duplicate JMS API on classpath -->
+                <exclusion>
+                    <groupId>org.apache.activemq</groupId>
+                    <artifactId>artemis-jms-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- ── Tests ─────────────────────────────────────────────── -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

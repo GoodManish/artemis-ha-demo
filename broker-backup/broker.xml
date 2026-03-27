@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  BACKUP (REPLICA) BROKER
+  ────────────────────────
+  Copy this file to:
+    apache-artemis-2.53.0\instances\broker-backup\etc\broker.xml
+
+  Port : 61617
+  Role : REPLICA — standby; promotes to live on failover
+-->
+<configuration xmlns="urn:activemq"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="urn:activemq /schema/artemis-configuration.xsd">
+
+  <core xmlns="urn:activemq:core">
+
+    <n>backup-broker</n>
+
+    <persistence-enabled>true</persistence-enabled>
+    <journal-directory>data/journal</journal-directory>
+    <bindings-directory>data/bindings</bindings-directory>
+    <large-messages-directory>data/large-messages</large-messages-directory>
+
+    <connectors>
+      <connector name="backup-connector">tcp://localhost:61617</connector>
+      <connector name="live-connector">tcp://localhost:61616</connector>
+    </connectors>
+
+    <acceptors>
+      <acceptor name="netty-acceptor">tcp://localhost:61617</acceptor>
+    </acceptors>
+
+    <!-- HA: this broker is the REPLICA (backup) -->
+    <ha-policy>
+      <replication>
+        <replica>
+          <allow-failback>true</allow-failback>
+          <vote-on-replication-failure>true</vote-on-replication-failure>
+          <quorum-vote-wait>30</quorum-vote-wait>
+        </replica>
+      </replication>
+    </ha-policy>
+
+    <broadcast-groups>
+      <broadcast-group name="bg-group">
+        <broadcast-period>5000</broadcast-period>
+        <jgroups-file>test-jgroups-udp.xml</jgroups-file>
+        <jgroups-channel>active_broadcast_channel</jgroups-channel>
+        <connector-ref>backup-connector</connector-ref>
+      </broadcast-group>
+    </broadcast-groups>
+
+    <discovery-groups>
+      <discovery-group name="dg-group">
+        <jgroups-file>test-jgroups-udp.xml</jgroups-file>
+        <jgroups-channel>active_broadcast_channel</jgroups-channel>
+        <refresh-timeout>10000</refresh-timeout>
+      </discovery-group>
+    </discovery-groups>
+
+    <cluster-connections>
+      <cluster-connection name="my-cluster">
+        <connector-ref>backup-connector</connector-ref>
+        <retry-interval>500</retry-interval>
+        <use-duplicate-detection>true</use-duplicate-detection>
+        <message-load-balancing>STRICT</message-load-balancing>
+        <max-hops>1</max-hops>
+        <discovery-group-ref discovery-group-name="dg-group"/>
+      </cluster-connection>
+    </cluster-connections>
+
+    <security-settings>
+      <security-setting match="#">
+        <permission type="createNonDurableQueue" roles="admin"/>
+        <permission type="deleteNonDurableQueue" roles="admin"/>
+        <permission type="createDurableQueue"    roles="admin"/>
+        <permission type="deleteDurableQueue"    roles="admin"/>
+        <permission type="createAddress"         roles="admin"/>
+        <permission type="deleteAddress"         roles="admin"/>
+        <permission type="consume"               roles="admin"/>
+        <permission type="browse"                roles="admin"/>
+        <permission type="send"                  roles="admin"/>
+        <permission type="manage"                roles="admin"/>
+      </security-setting>
+    </security-settings>
+
+    <addresses>
+      <address name="demo.queue">
+        <anycast>
+          <queue name="demo.queue">
+            <durable>true</durable>
+          </queue>
+        </anycast>
+      </address>
+    </addresses>
+
+  </core>
+</configuration>
