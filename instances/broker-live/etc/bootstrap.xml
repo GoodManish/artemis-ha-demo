@@ -16,16 +16,30 @@
   ~ limitations under the License.
   -->
 
-<broker xmlns="http://activemq.apache.org/schema">
+<!--<broker xmlns="http://activemq.apache.org/schema">
 
    <jaas-security domain="activemq"/>
 
 
-   <!-- artemis.URI.instance is parsed from artemis.instance by the CLI startup.
-        This is to avoid situations where you could have spaces or special characters on this URI -->
+   &lt;!&ndash; artemis.URI.instance is parsed from artemis.instance by the CLI startup.
+        This is to avoid situations where you could have spaces or special characters on this URI &ndash;&gt;
    <server configuration="file:/C:/Users/vanma/IdeaProjects/artemis-ha-demo/instances/broker-live/etc//broker.xml"/>
 
+   <web bind="http://localhost:8161" path="web" rootRedirectLocation="console"/>
 
+</broker>-->
+
+<broker xmlns="http://activemq.apache.org/schema">
+
+    <jaas-security domain="activemq"/>
+
+    <!-- Use ${artemis.URI.instance} — handles Windows backslashes correctly -->
+    <server configuration="${artemis.URI.instance}/etc/broker.xml"/>
+
+    <web path="web" rootRedirectLocation="console">
+        <binding name="artemis" uri="http://localhost:8161">
+            <app name="console" url="console" war="console.war"/>
+        </binding>
+    </web>
 
 </broker>
-

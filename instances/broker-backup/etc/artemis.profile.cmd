@@ -26,7 +26,7 @@ rem set ARTEMIS_CLUSTER_PROPS=-Dactivemq.remoting.default.port=61617 -Dactivemq.
 
 rem Java Opts
 IF "%JAVA_ARGS%"=="" (set JAVA_ARGS=-XX:AutoBoxCacheMax=20000 -XX:+PrintClassHistogram -XX:+UseG1GC -XX:+UseStringDeduplication -Xms512M -Xmx2G -Dhawtio.disableProxy=true -Dhawtio.realm=activemq -Dhawtio.offline=true -Dhawtio.rolePrincipalClasses=org.apache.activemq.artemis.spi.core.security.jaas.RolePrincipal -Dhawtio.http.strictTransportSecurity=max-age=31536000;includeSubDomains;preload -Djolokia.policyLocation=classpath:jolokia-access.xml -Dlog4j2.disableJmx=true --add-opens java.base/jdk.internal.misc=ALL-UNNAMED -Dhawtio.roles=amq  )
-
+set JAVA_ARGS=%JAVA_ARGS% -Dhawtio.port=8162
 rem Logs Safepoints JVM pauses: Uncomment to enable them
 rem In addition to the traditional GC logs you could enable some JVM flags to know any meaningful and "hidden" pause that could
 rem affect the latencies of the services delivered by the broker, including those that are not reported by the classic GC logs
