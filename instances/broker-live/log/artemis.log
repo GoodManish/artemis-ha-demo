@@ -1,327 +1,68 @@
-2026-03-27 20:04:04,599 INFO  [org.apache.activemq.artemis.core.server] AMQ221038: Configuration option 'check-for-live-server' is deprecated and will be removed in a future version. Use 'check-for-active-server' instead. Consult the manual for details.
-2026-03-27 20:04:05,001 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
-2026-03-27 20:04:05,002 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 20:04:05,260 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
-2026-03-27 20:04:05,301 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
-2026-03-27 20:04:05,359 WARN  [org.apache.activemq.artemis.core.server] AMQ224105: Connecting to cluster failed
-org.apache.activemq.artemis.api.core.ActiveMQInternalErrorException: AMQ219004: Failed to initialise session factory
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.initialize(ServerLocatorImpl.java:286)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:673)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:566)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connectNoWarnings(ServerLocatorImpl.java:572)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.isNodeIdUsed(SharedNothingPrimaryActivation.java:314)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.run(SharedNothingPrimaryActivation.java:103)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.internalStart(ActiveMQServerImpl.java:774)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.start(ActiveMQServerImpl.java:652)
-	at org.apache.activemq.artemis.integration.FileBroker.start(FileBroker.java:67)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:132)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-Caused by: org.apache.activemq.artemis.api.core.ActiveMQInternalErrorException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.startDiscovery(ServerLocatorImpl.java:300)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.initialize(ServerLocatorImpl.java:282)
-	... 17 more
-Caused by: java.lang.RuntimeException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpoint.createChannel(JGroupsFileBroadcastEndpoint.java:43)
-	at org.apache.activemq.artemis.api.core.jgroups.JChannelManager.getJChannel(JChannelManager.java:74)
-	at org.apache.activemq.artemis.api.core.JGroupsBroadcastEndpoint.initChannel(JGroupsBroadcastEndpoint.java:119)
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpointFactory.createBroadcastEndpoint(JGroupsFileBroadcastEndpointFactory.java:31)
-	at org.apache.activemq.artemis.core.cluster.DiscoveryGroup.<init>(DiscoveryGroup.java:98)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createDiscoveryGroup(ServerLocatorImpl.java:328)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.startDiscovery(ServerLocatorImpl.java:294)
-	... 18 more
-2026-03-27 20:04:05,434 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
-2026-03-27 20:04:05,479 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
-2026-03-27 20:04:05,536 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
-2026-03-27 20:04:05,556 ERROR [org.apache.activemq.artemis.core.server] AMQ224000: Failure in initialisation
-java.lang.RuntimeException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpoint.createChannel(JGroupsFileBroadcastEndpoint.java:43)
-	at org.apache.activemq.artemis.api.core.jgroups.JChannelManager.getJChannel(JChannelManager.java:74)
-	at org.apache.activemq.artemis.api.core.JGroupsBroadcastEndpoint.initChannel(JGroupsBroadcastEndpoint.java:119)
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpointFactory.createBroadcastEndpoint(JGroupsFileBroadcastEndpointFactory.java:31)
-	at org.apache.activemq.artemis.core.server.cluster.impl.BroadcastGroupImpl.<init>(BroadcastGroupImpl.java:91)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.createBroadcastGroup(ClusterManager.java:665)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.deployBroadcastGroup(ClusterManager.java:656)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.deploy(ClusterManager.java:245)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.initialisePart1(ActiveMQServerImpl.java:3397)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.run(SharedNothingPrimaryActivation.java:114)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.internalStart(ActiveMQServerImpl.java:774)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.start(ActiveMQServerImpl.java:652)
-	at org.apache.activemq.artemis.integration.FileBroker.start(FileBroker.java:67)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:132)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-2026-03-27 20:04:05,557 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=01b5be99-29ea-11f1-a633-0a0027000016] 
-2026-03-27 20:04:05,566 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [01b5be99-29ea-11f1-a633-0a0027000016] stopped, uptime 0.279 seconds
-2026-03-27 20:20:20,930 INFO  [org.apache.activemq.artemis.core.server] AMQ221038: Configuration option 'check-for-live-server' is deprecated and will be removed in a future version. Use 'check-for-active-server' instead. Consult the manual for details.
-2026-03-27 20:20:21,385 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
-2026-03-27 20:20:21,386 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 20:20:21,582 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
-2026-03-27 20:20:21,610 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
-2026-03-27 20:20:21,661 WARN  [org.apache.activemq.artemis.core.server] AMQ224105: Connecting to cluster failed
-org.apache.activemq.artemis.api.core.ActiveMQInternalErrorException: AMQ219004: Failed to initialise session factory
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.initialize(ServerLocatorImpl.java:286)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:673)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:566)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connectNoWarnings(ServerLocatorImpl.java:572)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.isNodeIdUsed(SharedNothingPrimaryActivation.java:314)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.run(SharedNothingPrimaryActivation.java:103)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.internalStart(ActiveMQServerImpl.java:774)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.start(ActiveMQServerImpl.java:652)
-	at org.apache.activemq.artemis.integration.FileBroker.start(FileBroker.java:67)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:132)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-Caused by: org.apache.activemq.artemis.api.core.ActiveMQInternalErrorException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.startDiscovery(ServerLocatorImpl.java:300)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.initialize(ServerLocatorImpl.java:282)
-	... 17 more
-Caused by: java.lang.RuntimeException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpoint.createChannel(JGroupsFileBroadcastEndpoint.java:43)
-	at org.apache.activemq.artemis.api.core.jgroups.JChannelManager.getJChannel(JChannelManager.java:74)
-	at org.apache.activemq.artemis.api.core.JGroupsBroadcastEndpoint.initChannel(JGroupsBroadcastEndpoint.java:119)
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpointFactory.createBroadcastEndpoint(JGroupsFileBroadcastEndpointFactory.java:31)
-	at org.apache.activemq.artemis.core.cluster.DiscoveryGroup.<init>(DiscoveryGroup.java:98)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createDiscoveryGroup(ServerLocatorImpl.java:328)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.startDiscovery(ServerLocatorImpl.java:294)
-	... 18 more
-2026-03-27 20:20:21,723 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
-2026-03-27 20:20:21,769 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
-2026-03-27 20:20:21,831 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
-2026-03-27 20:20:21,852 ERROR [org.apache.activemq.artemis.core.server] AMQ224000: Failure in initialisation
-java.lang.RuntimeException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpoint.createChannel(JGroupsFileBroadcastEndpoint.java:43)
-	at org.apache.activemq.artemis.api.core.jgroups.JChannelManager.getJChannel(JChannelManager.java:74)
-	at org.apache.activemq.artemis.api.core.JGroupsBroadcastEndpoint.initChannel(JGroupsBroadcastEndpoint.java:119)
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpointFactory.createBroadcastEndpoint(JGroupsFileBroadcastEndpointFactory.java:31)
-	at org.apache.activemq.artemis.core.server.cluster.impl.BroadcastGroupImpl.<init>(BroadcastGroupImpl.java:91)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.createBroadcastGroup(ClusterManager.java:665)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.deployBroadcastGroup(ClusterManager.java:656)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.deploy(ClusterManager.java:245)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.initialisePart1(ActiveMQServerImpl.java:3397)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.run(SharedNothingPrimaryActivation.java:114)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.internalStart(ActiveMQServerImpl.java:774)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.start(ActiveMQServerImpl.java:652)
-	at org.apache.activemq.artemis.integration.FileBroker.start(FileBroker.java:67)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:132)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-2026-03-27 20:20:21,853 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=01b5be99-29ea-11f1-a633-0a0027000016] 
-2026-03-27 20:20:21,871 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [01b5be99-29ea-11f1-a633-0a0027000016] stopped, uptime 0.268 seconds
-2026-03-27 20:23:51,576 INFO  [org.apache.activemq.artemis.core.server] AMQ221038: Configuration option 'check-for-live-server' is deprecated and will be removed in a future version. Use 'check-for-active-server' instead. Consult the manual for details.
-2026-03-27 20:23:52,073 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
-2026-03-27 20:23:52,074 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 20:23:52,266 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
-2026-03-27 20:23:52,297 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
-2026-03-27 20:23:52,350 WARN  [org.apache.activemq.artemis.core.server] AMQ224105: Connecting to cluster failed
-org.apache.activemq.artemis.api.core.ActiveMQInternalErrorException: AMQ219004: Failed to initialise session factory
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.initialize(ServerLocatorImpl.java:286)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:673)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:566)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connectNoWarnings(ServerLocatorImpl.java:572)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.isNodeIdUsed(SharedNothingPrimaryActivation.java:314)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.run(SharedNothingPrimaryActivation.java:103)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.internalStart(ActiveMQServerImpl.java:774)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.start(ActiveMQServerImpl.java:652)
-	at org.apache.activemq.artemis.integration.FileBroker.start(FileBroker.java:67)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:132)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-Caused by: org.apache.activemq.artemis.api.core.ActiveMQInternalErrorException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.startDiscovery(ServerLocatorImpl.java:300)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.initialize(ServerLocatorImpl.java:282)
-	... 17 more
-Caused by: java.lang.RuntimeException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpoint.createChannel(JGroupsFileBroadcastEndpoint.java:43)
-	at org.apache.activemq.artemis.api.core.jgroups.JChannelManager.getJChannel(JChannelManager.java:74)
-	at org.apache.activemq.artemis.api.core.JGroupsBroadcastEndpoint.initChannel(JGroupsBroadcastEndpoint.java:119)
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpointFactory.createBroadcastEndpoint(JGroupsFileBroadcastEndpointFactory.java:31)
-	at org.apache.activemq.artemis.core.cluster.DiscoveryGroup.<init>(DiscoveryGroup.java:98)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createDiscoveryGroup(ServerLocatorImpl.java:328)
-	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.startDiscovery(ServerLocatorImpl.java:294)
-	... 18 more
-2026-03-27 20:23:52,407 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
-2026-03-27 20:23:52,454 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
-2026-03-27 20:23:52,513 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
-2026-03-27 20:23:52,536 ERROR [org.apache.activemq.artemis.core.server] AMQ224000: Failure in initialisation
-java.lang.RuntimeException: couldn't find JGroups configuration test-jgroups-udp.xml
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpoint.createChannel(JGroupsFileBroadcastEndpoint.java:43)
-	at org.apache.activemq.artemis.api.core.jgroups.JChannelManager.getJChannel(JChannelManager.java:74)
-	at org.apache.activemq.artemis.api.core.JGroupsBroadcastEndpoint.initChannel(JGroupsBroadcastEndpoint.java:119)
-	at org.apache.activemq.artemis.api.core.JGroupsFileBroadcastEndpointFactory.createBroadcastEndpoint(JGroupsFileBroadcastEndpointFactory.java:31)
-	at org.apache.activemq.artemis.core.server.cluster.impl.BroadcastGroupImpl.<init>(BroadcastGroupImpl.java:91)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.createBroadcastGroup(ClusterManager.java:665)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.deployBroadcastGroup(ClusterManager.java:656)
-	at org.apache.activemq.artemis.core.server.cluster.ClusterManager.deploy(ClusterManager.java:245)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.initialisePart1(ActiveMQServerImpl.java:3397)
-	at org.apache.activemq.artemis.core.server.impl.SharedNothingPrimaryActivation.run(SharedNothingPrimaryActivation.java:114)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.internalStart(ActiveMQServerImpl.java:774)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.start(ActiveMQServerImpl.java:652)
-	at org.apache.activemq.artemis.integration.FileBroker.start(FileBroker.java:67)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:132)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-2026-03-27 20:23:52,537 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=01b5be99-29ea-11f1-a633-0a0027000016] 
-2026-03-27 20:23:52,558 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [01b5be99-29ea-11f1-a633-0a0027000016] stopped, uptime 0.268 seconds
-2026-03-27 20:25:16,555 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
-2026-03-27 20:25:16,569 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 20:25:16,906 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
-2026-03-27 20:25:16,959 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
-2026-03-27 20:25:20,375 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
-2026-03-27 20:25:20,404 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
-2026-03-27 20:25:20,462 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
-2026-03-27 20:25:20,525 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
-2026-03-27 20:25:20,527 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
-2026-03-27 20:25:20,527 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
-2026-03-27 20:25:20,528 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
-2026-03-27 20:25:20,535 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
-2026-03-27 20:25:20,536 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
-2026-03-27 20:25:20,805 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
-2026-03-27 20:25:20,828 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
-2026-03-27 20:25:20,889 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
-2026-03-27 20:25:20,889 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
-2026-03-27 20:25:21,297 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
-2026-03-27 20:25:21,298 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
-2026-03-27 20:25:21,300 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=01b5be99-29ea-11f1-a633-0a0027000016] 
-2026-03-27 20:28:35,842 ERROR [org.apache.activemq.artemis.core.deployers.impl.FileConfigurationParser] cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":master}'. One of '{"urn:activemq:core":live-only, "urn:activemq:core":primary-only, "urn:activemq:core":replication, "urn:activemq:core":shared-store}' is expected.
-org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":master}'. One of '{"urn:activemq:core":live-only, "urn:activemq:core":primary-only, "urn:activemq:core":replication, "urn:activemq:core":shared-store}' is expected.
-	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
-	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
-	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
-	at org.apache.activemq.artemis.core.deployers.impl.FileConfigurationParser.parseMainConfig(FileConfigurationParser.java:418)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.reloadConfigurationFile(ActiveMQServerImpl.java:4697)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.lambda$initialisePart1$0(ActiveMQServerImpl.java:3447)
-	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl$ReloadRegistry.check(ReloadManagerImpl.java:136)
-	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl.tick(ReloadManagerImpl.java:77)
-	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl.run(ReloadManagerImpl.java:49)
-	at org.apache.activemq.artemis.core.server.ActiveMQScheduledComponent.runForExecutor(ActiveMQScheduledComponent.java:327)
-	at org.apache.activemq.artemis.core.server.ActiveMQScheduledComponent.lambda$bookedRunForScheduler$0(ActiveMQScheduledComponent.java:334)
+2026-03-28 00:05:39,772 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-28 00:05:39,789 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-28 00:05:40,177 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-28 00:05:40,230 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-28 00:05:41,384 INFO  [org.apache.activemq.artemis.core.server] AMQ222162: Moving data directory C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings to C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\oldreplica.1
+2026-03-28 00:05:41,400 INFO  [org.apache.activemq.artemis.core.server] AMQ222162: Moving data directory C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal to C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\oldreplica.1
+2026-03-28 00:05:41,498 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-28 00:05:41,514 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-28 00:05:41,583 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-28 00:05:41,665 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-28 00:05:41,669 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-28 00:05:41,670 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-28 00:05:41,672 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-28 00:05:41,678 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-28 00:05:41,680 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-28 00:05:41,784 INFO  [org.apache.activemq.artemis.core.server] AMQ221109: Apache Artemis Backup Server version 2.53.0 [null] started; waiting for primary to fail before activating
+2026-03-28 00:05:42,727 INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveMQServerImpl::name=live-broker is synchronized with primary server, nodeID=01b5be99-29ea-11f1-a633-0a0027000016.
+2026-03-28 00:05:42,752 INFO  [org.apache.activemq.artemis.core.client] AMQ214036: Connection closure to localhost/127.0.0.1:61617 has been detected: AMQ219015: The connection was disconnected because of server shutdown [code=DISCONNECTED]
+2026-03-28 00:05:42,775 INFO  [org.apache.activemq.artemis.core.server] AMQ221037: ActiveMQServerImpl::name=live-broker to become 'active'
+2026-03-28 00:05:42,981 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-28 00:05:42,983 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-28 00:05:43,204 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-28 00:05:43,207 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-28 00:05:43,614 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
+2026-03-28 00:05:43,738 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
+2026-03-28 00:05:44,289 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-21.amq (size=10485760) to replica, origin=journal
+2026-03-28 00:05:44,653 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-24.bindings (size=1048576) to replica, origin=journal
+2026-03-28 00:05:44,734 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-25.bindings (size=1048576) to replica, origin=journal
+2026-03-28 00:05:44,772 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-23.bindings (size=1048576) to replica, origin=journal
+2026-03-28 00:06:03,071 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [01b5be99-29ea-11f1-a633-0a0027000016] stopped, uptime 22.850 seconds
+2026-03-28 10:31:26,550 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-28 10:31:26,567 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-28 10:31:26,851 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-28 10:31:27,836 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-28 10:31:31,389 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-28 10:31:31,488 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-28 10:31:31,726 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-28 10:31:31,840 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-28 10:31:31,842 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-28 10:31:31,844 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-28 10:31:31,850 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-28 10:31:31,851 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-28 10:31:31,852 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-28 10:31:32,351 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-28 10:31:32,406 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-28 10:31:32,483 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-28 10:31:32,484 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-28 10:31:32,973 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
+2026-03-28 10:31:32,974 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
+2026-03-28 10:31:32,976 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=2d78b4cd-2a63-11f1-a10a-0a0027000007] 
+2026-03-28 10:31:33,675 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-2.amq (size=10485760) to replica, origin=journal
+2026-03-28 10:31:34,398 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-3.bindings (size=1048576) to replica, origin=journal
+2026-03-28 10:31:34,408 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-2.bindings (size=1048576) to replica, origin=journal
+2026-03-28 10:43:22,872 WARN  [org.apache.activemq.artemis.core.server] AMQ222092: Connection to the backup node failed, removing replication now
+org.apache.activemq.artemis.api.core.ActiveMQRemoteDisconnectException: 
+	at org.apache.activemq.artemis.core.remoting.server.impl.RemotingServiceImpl.connectionDestroyed(RemotingServiceImpl.java:783)
+	at org.apache.activemq.artemis.core.remoting.impl.netty.NettyAcceptor$Listener.connectionDestroyed(NettyAcceptor.java:1032)
+	at org.apache.activemq.artemis.core.remoting.impl.netty.ActiveMQChannelHandler.lambda$channelInactive$0(ActiveMQChannelHandler.java:89)
 	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
 	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
 	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
-2026-03-27 20:28:35,919 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 20:28:35,945 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: security settings
-2026-03-27 20:28:35,951 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: address settings
-2026-03-27 20:28:36,005 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
-2026-03-27 20:28:36,044 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
-2026-03-27 20:28:36,090 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: diverts
-2026-03-27 20:28:36,110 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: addresses
-2026-03-27 20:28:36,114 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
-2026-03-27 20:28:36,121 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
-2026-03-27 20:28:36,125 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: bridges
-2026-03-27 20:28:36,126 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: connection routers
-2026-03-27 20:28:36,132 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: protocol services
-2026-03-27 20:37:04,529 WARN  [org.apache.activemq.artemis.core.client] AMQ212037: CORE connection failure to localhost/127.0.0.1:61617 has been detected: AMQ219014: Timed out after waiting 30000 ms for response when sending packet 125 [code=CONNECTION_TIMEDOUT]
-2026-03-27 20:29:50,845 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 20:37:04,526 WARN  [org.apache.activemq.artemis.core.server] AMQ222186: unable to authorise cluster control: AMQ219014: Timed out after waiting 30000 ms for response when sending packet 125
-2026-03-27 21:49:48,235 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: security settings
-2026-03-27 21:49:48,239 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: address settings
-2026-03-27 21:49:48,240 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
-2026-03-27 21:49:48,246 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
-2026-03-27 21:49:48,247 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: diverts
-2026-03-27 21:49:48,247 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: addresses
-2026-03-27 21:49:48,248 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
-2026-03-27 21:49:48,249 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
-2026-03-27 21:49:48,250 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: bridges
-2026-03-27 21:49:48,250 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: connection routers
-2026-03-27 21:49:48,252 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: protocol services
-2026-03-27 21:50:03,416 WARN  [org.apache.activemq.artemis.core.server] AMQ224144: The topology of the cluster connection my-cluster doesn't include all the expected members. Check the discovery group or the static connectors of the cluster connection if the topology is correct: Topology@7fa0c51[owner=ClusterConnectionImpl@1807896178[nodeUUID=01b5be99-29ea-11f1-a633-0a0027000016, connector=TransportConfiguration(name=live-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory)?port=61616&host=localhost, address=, server=ActiveMQServerImpl::name=live-broker]] / [TopologyMember[id=01b5be99-29ea-11f1-a633-0a0027000016, connector=Pair[a=TransportConfiguration(name=live-connector, factory=org-apache-activemq-artemis-core-remoting-impl-netty-NettyConnectorFactory)?port=61616&host=localhost, b=null], backupGroupName=null, scaleDownGroupName=null]]
-2026-03-27 21:53:14,913 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-2.amq (size=10485760) to replica, origin=journal
-2026-03-27 21:53:15,356 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-3.bindings (size=1048576) to replica, origin=journal
-2026-03-27 21:53:15,371 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-2.bindings (size=1048576) to replica, origin=journal
-2026-03-27 21:57:17,850 ERROR [org.apache.activemq.artemis.core.deployers.impl.FileConfigurationParser] cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":web}'. One of '{"urn:activemq:core":system-property-prefix, "urn:activemq:core":internal-naming-prefix, "urn:activemq:core":amqp-use-core-subscription-naming, "urn:activemq:core":resolve-protocols, "urn:activemq:core":journal-datasync, "urn:activemq:core":large-message-sync, "urn:activemq:core":scheduled-thread-pool-max-size, "urn:activemq:core":thread-pool-max-size, "urn:activemq:core":graceful-shutdown-enabled, "urn:activemq:core":graceful-shutdown-timeout, "urn:activemq:core":security-enabled, "urn:activemq:core":security-invalidation-interval, "urn:activemq:core":authentication-cache-size, "urn:activemq:core":authorization-cache-size, "urn:activemq:core":journal-lock-acquisition-timeout, "urn:activemq:core":wild-card-routing-enabled, "urn:activemq:core":management-address, "urn:activemq:core":management-notification-address, "urn:activemq:core":cluster-user, "urn:activemq:core":cluster-password, "urn:activemq:core":password-codec, "urn:activemq:core":mask-password, "urn:activemq:core":log-delegate-factory-class-name, "urn:activemq:core":jmx-management-enabled, "urn:activemq:core":jmx-notification-enabled, "urn:activemq:core":jmx-domain, "urn:activemq:core":jmx-use-broker-name, "urn:activemq:core":message-counter-enabled, "urn:activemq:core":message-counter-sample-period, "urn:activemq:core":message-counter-max-day-history, "urn:activemq:core":connection-ttl-override, "urn:activemq:core":connection-ttl-check-interval, "urn:activemq:core":configuration-file-refresh-period, "urn:activemq:core":temporary-queue-namespace, "urn:activemq:core":uuid-namespace, "urn:activemq:core":async-connection-execution-enabled, "urn:activemq:core":transaction-timeout, "urn:activemq:core":transaction-timeout-scan-period, "urn:activemq:core":message-expiry-scan-period, "urn:activemq:core":message-expiry-thread-priority, "urn:activemq:core":address-queue-scan-period, "urn:activemq:core":id-cache-size, "urn:activemq:core":persist-id-cache, "urn:activemq:core":remoting-incoming-interceptors, "urn:activemq:core":remoting-outgoing-interceptors, "urn:activemq:core":persist-delivery-count-before-delivery, "urn:activemq:core":max-redelivery-records, "urn:activemq:core":populate-validated-user, "urn:activemq:core":reject-empty-validated-user, "urn:activemq:core":mqtt-session-scan-interval, "urn:activemq:core":mqtt-session-state-persistence-timeout, "urn:activemq:core":mqtt-subscription-persistence-enabled, "urn:activemq:core":broadcast-groups, "urn:activemq:core":discovery-groups, "urn:activemq:core":diverts, "urn:activemq:core":queues, "urn:activemq:core":lock-coordinators, "urn:activemq:core":bridges, "urn:activemq:core":federations, "urn:activemq:core":broker-connections, "urn:activemq:core":connection-routers, "urn:activemq:core":grouping-handler, "urn:activemq:core":purge-page-folders, "urn:activemq:core":paging-directory, "urn:activemq:core":create-bindings-dir, "urn:activemq:core":page-max-concurrent-io, "urn:activemq:core":read-whole-page, "urn:activemq:core":journal-retention-directory, "urn:activemq:core":node-manager-lock-directory, "urn:activemq:core":create-journal-dir, "urn:activemq:core":journal-type, "urn:activemq:core":journal-buffer-timeout, "urn:activemq:core":journal-device-block-size, "urn:activemq:core":journal-buffer-size, "urn:activemq:core":journal-sync-transactional, "urn:activemq:core":journal-sync-non-transactional, "urn:activemq:core":log-journal-write-rate, "urn:activemq:core":journal-file-size, "urn:activemq:core":journal-min-files, "urn:activemq:core":journal-pool-files, "urn:activemq:core":journal-compact-percentage, "urn:activemq:core":journal-compact-min-files, "urn:activemq:core":journal-max-io, "urn:activemq:core":journal-file-open-timeout, "urn:activemq:core":server-dump-interval, "urn:activemq:core":global-max-messages, "urn:activemq:core":global-max-size-percent-of-jvm-max-memory, "urn:activemq:core":global-max-size, "urn:activemq:core":max-disk-usage, "urn:activemq:core":min-disk-free, "urn:activemq:core":disk-scan-period, "urn:activemq:core":memory-warning-threshold, "urn:activemq:core":memory-measure-interval, "urn:activemq:core":store, "urn:activemq:core":critical-analyzer, "urn:activemq:core":critical-analyzer-timeout, "urn:activemq:core":critical-analyzer-check-period, "urn:activemq:core":critical-analyzer-policy, "urn:activemq:core":page-sync-timeout, "urn:activemq:core":mirror-ack-manager-queue-attempts, "urn:activemq:core":mirror-ack-manager-page-attempts, "urn:activemq:core":mirror-ack-manager-retry-delay, "urn:activemq:core":mirror-ack-manager-warn-unacked, "urn:activemq:core":mirror-page-transaction, "urn:activemq:core":suppress-session-notifications, "urn:activemq:core":literal-match-markers, "urn:activemq:core":view-permission-method-match-pattern, "urn:activemq:core":management-message-rbac, "urn:activemq:core":management-rbac-prefix, "urn:activemq:core":broker-plugins, "urn:activemq:core":metrics-plugin, "urn:activemq:core":metrics, "urn:activemq:core":address-settings, "urn:activemq:core":resource-limit-settings, "urn:activemq:core":connector-services, "urn:activemq:core":network-check-list, "urn:activemq:core":network-check-URL-list, "urn:activemq:core":network-check-period, "urn:activemq:core":network-check-timeout, "urn:activemq:core":network-check-NIC, "urn:activemq:core":network-check-ping-command, "urn:activemq:core":network-check-ping6-command, "urn:activemq:core":wildcard-addresses}' is expected.
-org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":web}'. One of '{"urn:activemq:core":system-property-prefix, "urn:activemq:core":internal-naming-prefix, "urn:activemq:core":amqp-use-core-subscription-naming, "urn:activemq:core":resolve-protocols, "urn:activemq:core":journal-datasync, "urn:activemq:core":large-message-sync, "urn:activemq:core":scheduled-thread-pool-max-size, "urn:activemq:core":thread-pool-max-size, "urn:activemq:core":graceful-shutdown-enabled, "urn:activemq:core":graceful-shutdown-timeout, "urn:activemq:core":security-enabled, "urn:activemq:core":security-invalidation-interval, "urn:activemq:core":authentication-cache-size, "urn:activemq:core":authorization-cache-size, "urn:activemq:core":journal-lock-acquisition-timeout, "urn:activemq:core":wild-card-routing-enabled, "urn:activemq:core":management-address, "urn:activemq:core":management-notification-address, "urn:activemq:core":cluster-user, "urn:activemq:core":cluster-password, "urn:activemq:core":password-codec, "urn:activemq:core":mask-password, "urn:activemq:core":log-delegate-factory-class-name, "urn:activemq:core":jmx-management-enabled, "urn:activemq:core":jmx-notification-enabled, "urn:activemq:core":jmx-domain, "urn:activemq:core":jmx-use-broker-name, "urn:activemq:core":message-counter-enabled, "urn:activemq:core":message-counter-sample-period, "urn:activemq:core":message-counter-max-day-history, "urn:activemq:core":connection-ttl-override, "urn:activemq:core":connection-ttl-check-interval, "urn:activemq:core":configuration-file-refresh-period, "urn:activemq:core":temporary-queue-namespace, "urn:activemq:core":uuid-namespace, "urn:activemq:core":async-connection-execution-enabled, "urn:activemq:core":transaction-timeout, "urn:activemq:core":transaction-timeout-scan-period, "urn:activemq:core":message-expiry-scan-period, "urn:activemq:core":message-expiry-thread-priority, "urn:activemq:core":address-queue-scan-period, "urn:activemq:core":id-cache-size, "urn:activemq:core":persist-id-cache, "urn:activemq:core":remoting-incoming-interceptors, "urn:activemq:core":remoting-outgoing-interceptors, "urn:activemq:core":persist-delivery-count-before-delivery, "urn:activemq:core":max-redelivery-records, "urn:activemq:core":populate-validated-user, "urn:activemq:core":reject-empty-validated-user, "urn:activemq:core":mqtt-session-scan-interval, "urn:activemq:core":mqtt-session-state-persistence-timeout, "urn:activemq:core":mqtt-subscription-persistence-enabled, "urn:activemq:core":broadcast-groups, "urn:activemq:core":discovery-groups, "urn:activemq:core":diverts, "urn:activemq:core":queues, "urn:activemq:core":lock-coordinators, "urn:activemq:core":bridges, "urn:activemq:core":federations, "urn:activemq:core":broker-connections, "urn:activemq:core":connection-routers, "urn:activemq:core":grouping-handler, "urn:activemq:core":purge-page-folders, "urn:activemq:core":paging-directory, "urn:activemq:core":create-bindings-dir, "urn:activemq:core":page-max-concurrent-io, "urn:activemq:core":read-whole-page, "urn:activemq:core":journal-retention-directory, "urn:activemq:core":node-manager-lock-directory, "urn:activemq:core":create-journal-dir, "urn:activemq:core":journal-type, "urn:activemq:core":journal-buffer-timeout, "urn:activemq:core":journal-device-block-size, "urn:activemq:core":journal-buffer-size, "urn:activemq:core":journal-sync-transactional, "urn:activemq:core":journal-sync-non-transactional, "urn:activemq:core":log-journal-write-rate, "urn:activemq:core":journal-file-size, "urn:activemq:core":journal-min-files, "urn:activemq:core":journal-pool-files, "urn:activemq:core":journal-compact-percentage, "urn:activemq:core":journal-compact-min-files, "urn:activemq:core":journal-max-io, "urn:activemq:core":journal-file-open-timeout, "urn:activemq:core":server-dump-interval, "urn:activemq:core":global-max-messages, "urn:activemq:core":global-max-size-percent-of-jvm-max-memory, "urn:activemq:core":global-max-size, "urn:activemq:core":max-disk-usage, "urn:activemq:core":min-disk-free, "urn:activemq:core":disk-scan-period, "urn:activemq:core":memory-warning-threshold, "urn:activemq:core":memory-measure-interval, "urn:activemq:core":store, "urn:activemq:core":critical-analyzer, "urn:activemq:core":critical-analyzer-timeout, "urn:activemq:core":critical-analyzer-check-period, "urn:activemq:core":critical-analyzer-policy, "urn:activemq:core":page-sync-timeout, "urn:activemq:core":mirror-ack-manager-queue-attempts, "urn:activemq:core":mirror-ack-manager-page-attempts, "urn:activemq:core":mirror-ack-manager-retry-delay, "urn:activemq:core":mirror-ack-manager-warn-unacked, "urn:activemq:core":mirror-page-transaction, "urn:activemq:core":suppress-session-notifications, "urn:activemq:core":literal-match-markers, "urn:activemq:core":view-permission-method-match-pattern, "urn:activemq:core":management-message-rbac, "urn:activemq:core":management-rbac-prefix, "urn:activemq:core":broker-plugins, "urn:activemq:core":metrics-plugin, "urn:activemq:core":metrics, "urn:activemq:core":address-settings, "urn:activemq:core":resource-limit-settings, "urn:activemq:core":connector-services, "urn:activemq:core":network-check-list, "urn:activemq:core":network-check-URL-list, "urn:activemq:core":network-check-period, "urn:activemq:core":network-check-timeout, "urn:activemq:core":network-check-NIC, "urn:activemq:core":network-check-ping-command, "urn:activemq:core":network-check-ping6-command, "urn:activemq:core":wildcard-addresses}' is expected.
-	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
-	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
-	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
-	at org.apache.activemq.artemis.core.deployers.impl.FileConfigurationParser.parseMainConfig(FileConfigurationParser.java:418)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.reloadConfigurationFile(ActiveMQServerImpl.java:4697)
-	at org.apache.activemq.artemis.core.server.impl.ActiveMQServerImpl.lambda$initialisePart1$0(ActiveMQServerImpl.java:3447)
-	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl$ReloadRegistry.check(ReloadManagerImpl.java:136)
-	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl.tick(ReloadManagerImpl.java:77)
-	at org.apache.activemq.artemis.core.server.reload.ReloadManagerImpl.run(ReloadManagerImpl.java:49)
-	at org.apache.activemq.artemis.core.server.ActiveMQScheduledComponent.runForExecutor(ActiveMQScheduledComponent.java:327)
-	at org.apache.activemq.artemis.core.server.ActiveMQScheduledComponent.lambda$bookedRunForScheduler$0(ActiveMQScheduledComponent.java:334)
-	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
-	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
-	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
-2026-03-27 21:57:17,875 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 21:57:17,883 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: security settings
-2026-03-27 21:57:17,884 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: address settings
-2026-03-27 21:57:17,898 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
-2026-03-27 21:57:17,899 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
-2026-03-27 21:57:17,904 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: diverts
-2026-03-27 21:57:17,905 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: addresses
-2026-03-27 21:57:17,906 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
-2026-03-27 21:57:17,906 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
-2026-03-27 21:57:17,907 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: bridges
-2026-03-27 21:57:17,907 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: connection routers
-2026-03-27 21:57:17,908 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration: protocol services
-2026-03-27 21:57:23,620 WARN  [org.apache.activemq.artemis.utils.actors.OrderedExecutor] Server locator is closed (maybe it was garbage collected)
+2026-03-28 10:43:40,542 WARN  [org.apache.activemq.artemis.utils.actors.OrderedExecutor] Server locator is closed (maybe it was garbage collected)
 java.lang.IllegalStateException: Server locator is closed (maybe it was garbage collected)
 	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.assertOpen(ServerLocatorImpl.java:1913)
 	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:671)
@@ -334,57 +75,163 @@ java.lang.IllegalStateException: Server locator is closed (maybe it was garbage 
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
-2026-03-27 21:57:23,853 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [01b5be99-29ea-11f1-a633-0a0027000016] stopped, uptime 1 hour 32 minutes
-2026-03-27 21:57:37,103 ERROR [org.apache.activemq.artemis.core.client] AMQ214019: Invalid configuration
-org.xml.sax.SAXParseException: cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:activemq:core":web}'. One of '{"urn:activemq:core":system-property-prefix, "urn:activemq:core":internal-naming-prefix, "urn:activemq:core":amqp-use-core-subscription-naming, "urn:activemq:core":resolve-protocols, "urn:activemq:core":journal-datasync, "urn:activemq:core":large-message-sync, "urn:activemq:core":scheduled-thread-pool-max-size, "urn:activemq:core":thread-pool-max-size, "urn:activemq:core":graceful-shutdown-enabled, "urn:activemq:core":graceful-shutdown-timeout, "urn:activemq:core":security-enabled, "urn:activemq:core":security-invalidation-interval, "urn:activemq:core":authentication-cache-size, "urn:activemq:core":authorization-cache-size, "urn:activemq:core":journal-lock-acquisition-timeout, "urn:activemq:core":wild-card-routing-enabled, "urn:activemq:core":management-address, "urn:activemq:core":management-notification-address, "urn:activemq:core":cluster-user, "urn:activemq:core":cluster-password, "urn:activemq:core":password-codec, "urn:activemq:core":mask-password, "urn:activemq:core":log-delegate-factory-class-name, "urn:activemq:core":jmx-management-enabled, "urn:activemq:core":jmx-notification-enabled, "urn:activemq:core":jmx-domain, "urn:activemq:core":jmx-use-broker-name, "urn:activemq:core":message-counter-enabled, "urn:activemq:core":message-counter-sample-period, "urn:activemq:core":message-counter-max-day-history, "urn:activemq:core":connection-ttl-override, "urn:activemq:core":connection-ttl-check-interval, "urn:activemq:core":configuration-file-refresh-period, "urn:activemq:core":temporary-queue-namespace, "urn:activemq:core":uuid-namespace, "urn:activemq:core":async-connection-execution-enabled, "urn:activemq:core":transaction-timeout, "urn:activemq:core":transaction-timeout-scan-period, "urn:activemq:core":message-expiry-scan-period, "urn:activemq:core":message-expiry-thread-priority, "urn:activemq:core":address-queue-scan-period, "urn:activemq:core":id-cache-size, "urn:activemq:core":persist-id-cache, "urn:activemq:core":remoting-incoming-interceptors, "urn:activemq:core":remoting-outgoing-interceptors, "urn:activemq:core":persist-delivery-count-before-delivery, "urn:activemq:core":max-redelivery-records, "urn:activemq:core":populate-validated-user, "urn:activemq:core":reject-empty-validated-user, "urn:activemq:core":mqtt-session-scan-interval, "urn:activemq:core":mqtt-session-state-persistence-timeout, "urn:activemq:core":mqtt-subscription-persistence-enabled, "urn:activemq:core":broadcast-groups, "urn:activemq:core":discovery-groups, "urn:activemq:core":diverts, "urn:activemq:core":queues, "urn:activemq:core":lock-coordinators, "urn:activemq:core":bridges, "urn:activemq:core":federations, "urn:activemq:core":broker-connections, "urn:activemq:core":connection-routers, "urn:activemq:core":grouping-handler, "urn:activemq:core":purge-page-folders, "urn:activemq:core":paging-directory, "urn:activemq:core":create-bindings-dir, "urn:activemq:core":page-max-concurrent-io, "urn:activemq:core":read-whole-page, "urn:activemq:core":journal-retention-directory, "urn:activemq:core":node-manager-lock-directory, "urn:activemq:core":create-journal-dir, "urn:activemq:core":journal-type, "urn:activemq:core":journal-buffer-timeout, "urn:activemq:core":journal-device-block-size, "urn:activemq:core":journal-buffer-size, "urn:activemq:core":journal-sync-transactional, "urn:activemq:core":journal-sync-non-transactional, "urn:activemq:core":log-journal-write-rate, "urn:activemq:core":journal-file-size, "urn:activemq:core":journal-min-files, "urn:activemq:core":journal-pool-files, "urn:activemq:core":journal-compact-percentage, "urn:activemq:core":journal-compact-min-files, "urn:activemq:core":journal-max-io, "urn:activemq:core":journal-file-open-timeout, "urn:activemq:core":server-dump-interval, "urn:activemq:core":global-max-messages, "urn:activemq:core":global-max-size-percent-of-jvm-max-memory, "urn:activemq:core":global-max-size, "urn:activemq:core":max-disk-usage, "urn:activemq:core":min-disk-free, "urn:activemq:core":disk-scan-period, "urn:activemq:core":memory-warning-threshold, "urn:activemq:core":memory-measure-interval, "urn:activemq:core":store, "urn:activemq:core":critical-analyzer, "urn:activemq:core":critical-analyzer-timeout, "urn:activemq:core":critical-analyzer-check-period, "urn:activemq:core":critical-analyzer-policy, "urn:activemq:core":page-sync-timeout, "urn:activemq:core":mirror-ack-manager-queue-attempts, "urn:activemq:core":mirror-ack-manager-page-attempts, "urn:activemq:core":mirror-ack-manager-retry-delay, "urn:activemq:core":mirror-ack-manager-warn-unacked, "urn:activemq:core":mirror-page-transaction, "urn:activemq:core":suppress-session-notifications, "urn:activemq:core":literal-match-markers, "urn:activemq:core":view-permission-method-match-pattern, "urn:activemq:core":management-message-rbac, "urn:activemq:core":management-rbac-prefix, "urn:activemq:core":broker-plugins, "urn:activemq:core":metrics-plugin, "urn:activemq:core":metrics, "urn:activemq:core":address-settings, "urn:activemq:core":resource-limit-settings, "urn:activemq:core":connector-services, "urn:activemq:core":network-check-list, "urn:activemq:core":network-check-URL-list, "urn:activemq:core":network-check-period, "urn:activemq:core":network-check-timeout, "urn:activemq:core":network-check-NIC, "urn:activemq:core":network-check-ping-command, "urn:activemq:core":network-check-ping6-command, "urn:activemq:core":wildcard-addresses}' is expected.
-	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
-	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:135)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:512)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3596)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleStartElement(XMLSchemaValidator.java:1972)
-	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.startElement(XMLSchemaValidator.java:830)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.beginNode(DOMValidatorHelper.java:277)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:244)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.DOMValidatorHelper.validate(DOMValidatorHelper.java:190)
-	at java.xml/com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:108)
-	at java.xml/javax.xml.validation.Validator.validate(Validator.java:124)
-	at org.apache.activemq.artemis.utils.XMLUtil.validate(XMLUtil.java:371)
-	at org.apache.activemq.artemis.core.config.FileDeploymentManager.readConfiguration(FileDeploymentManager.java:80)
-	at org.apache.activemq.artemis.integration.FileBroker.createComponents(FileBroker.java:123)
-	at org.apache.activemq.artemis.cli.commands.Run.execute(Run.java:122)
-	at org.apache.activemq.artemis.cli.Artemis.internalExecute(Artemis.java:223)
-	at org.apache.activemq.artemis.cli.Artemis.execute(Artemis.java:171)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.apache.activemq.artemis.boot.Artemis.execute(Artemis.java:149)
-	at org.apache.activemq.artemis.boot.Artemis.main(Artemis.java:61)
-2026-03-27 22:00:34,321 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
-2026-03-27 22:00:34,330 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
-2026-03-27 22:00:34,562 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
-2026-03-27 22:00:34,607 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
-2026-03-27 22:00:37,358 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
-2026-03-27 22:00:37,387 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
-2026-03-27 22:00:37,445 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
-2026-03-27 22:00:37,512 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
-2026-03-27 22:00:37,514 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
-2026-03-27 22:00:37,522 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
-2026-03-27 22:00:37,523 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
-2026-03-27 22:00:37,524 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
-2026-03-27 22:00:37,525 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
-2026-03-27 22:00:37,841 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
-2026-03-27 22:00:37,842 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
-2026-03-27 22:00:38,011 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
-2026-03-27 22:00:38,013 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
-2026-03-27 22:00:38,386 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
-2026-03-27 22:00:38,387 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
-2026-03-27 22:00:38,390 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=01b5be99-29ea-11f1-a633-0a0027000016] 
-2026-03-27 22:00:51,377 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-3.amq (size=10485760) to replica, origin=journal
-2026-03-27 22:00:51,767 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-1.bindings (size=1048576) to replica, origin=journal
-2026-03-27 22:00:51,777 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-2.bindings (size=1048576) to replica, origin=journal
-2026-03-27 22:09:22,151 WARN  [org.apache.activemq.artemis.core.server] AMQ222186: unable to authorise cluster control: AMQ219014: Timed out after waiting 30000 ms for response when sending packet 125
-2026-03-27 22:09:22,155 WARN  [org.apache.activemq.artemis.core.client] AMQ212037: CORE connection failure to localhost/127.0.0.1:61617 has been detected: AMQ219014: Timed out after waiting 30000 ms for response when sending packet 125 [code=CONNECTION_TIMEDOUT]
+2026-03-28 10:43:40,738 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [2d78b4cd-2a63-11f1-a10a-0a0027000007] stopped, uptime 12 minutes
+2026-03-28 16:56:14,427 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-28 16:56:14,437 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-28 16:56:14,715 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-28 16:56:14,793 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-28 16:56:17,978 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-28 16:56:18,010 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-28 16:56:18,068 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-28 16:56:18,128 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-28 16:56:18,130 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-28 16:56:18,131 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-28 16:56:18,132 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-28 16:56:18,133 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-28 16:56:18,133 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-28 16:56:18,379 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-28 16:56:18,379 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-28 16:56:18,522 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-28 16:56:18,524 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-28 16:56:18,916 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
+2026-03-28 16:56:18,917 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
+2026-03-28 16:56:18,917 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=2d78b4cd-2a63-11f1-a10a-0a0027000007] 
+2026-03-28 16:56:37,934 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-2.amq (size=10485760) to replica, origin=journal
+2026-03-28 16:56:38,439 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-1.bindings (size=1048576) to replica, origin=journal
+2026-03-28 16:56:38,455 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-2.bindings (size=1048576) to replica, origin=journal
+2026-03-28 17:37:50,890 WARN  [org.apache.activemq.artemis.core.server] AMQ222186: unable to authorise cluster control: AMQ219014: Timed out after waiting 30000 ms for response when sending packet 125
+2026-03-28 17:37:50,900 WARN  [org.apache.activemq.artemis.core.client] AMQ212037: CORE connection failure to localhost/127.0.0.1:61617 has been detected: AMQ219014: Timed out after waiting 30000 ms for response when sending packet 125 [code=CONNECTION_TIMEDOUT]
+2026-03-28 17:43:48,864 WARN  [org.apache.activemq.artemis.core.server] AMQ222092: Connection to the backup node failed, removing replication now
+org.apache.activemq.artemis.api.core.ActiveMQRemoteDisconnectException: 
+	at org.apache.activemq.artemis.core.remoting.server.impl.RemotingServiceImpl.connectionDestroyed(RemotingServiceImpl.java:783)
+	at org.apache.activemq.artemis.core.remoting.impl.netty.NettyAcceptor$Listener.connectionDestroyed(NettyAcceptor.java:1032)
+	at org.apache.activemq.artemis.core.remoting.impl.netty.ActiveMQChannelHandler.lambda$channelInactive$0(ActiveMQChannelHandler.java:89)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
+	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
+2026-03-28 17:43:58,176 WARN  [org.apache.activemq.artemis.utils.actors.OrderedExecutor] Server locator is closed (maybe it was garbage collected)
+java.lang.IllegalStateException: Server locator is closed (maybe it was garbage collected)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.assertOpen(ServerLocatorImpl.java:1913)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:671)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:566)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:545)
+	at org.apache.activemq.artemis.core.server.cluster.ClusterController$ConnectRunnable.run(ClusterController.java:478)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
+	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
+2026-03-28 17:43:58,364 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [2d78b4cd-2a63-11f1-a10a-0a0027000007] stopped, uptime 47 minutes
+2026-03-28 17:53:27,218 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-28 17:53:27,227 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-28 17:53:27,451 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-28 17:53:27,491 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-28 17:53:30,384 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-28 17:53:30,429 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-28 17:53:30,518 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-28 17:53:30,586 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-28 17:53:30,588 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-28 17:53:30,589 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-28 17:53:30,590 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-28 17:53:30,591 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-28 17:53:30,593 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-28 17:53:31,002 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-28 17:53:31,003 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-28 17:53:31,252 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-28 17:53:31,253 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-28 17:53:31,666 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
+2026-03-28 17:53:31,668 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
+2026-03-28 17:53:31,668 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=2d78b4cd-2a63-11f1-a10a-0a0027000007] 
+2026-03-28 17:53:31,684 INFO  [org.apache.activemq.artemis] AMQ241003: Starting embedded web server
+2026-03-28 17:53:31,981 INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://localhost:8161
+2026-03-28 17:53:32,195 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-1.amq (size=10485760) to replica, origin=journal
+2026-03-28 17:53:32,797 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-3.bindings (size=1048576) to replica, origin=journal
+2026-03-28 17:53:32,805 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-4.bindings (size=1048576) to replica, origin=journal
+2026-03-28 17:53:32,810 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-2.bindings (size=1048576) to replica, origin=journal
+2026-03-28 17:57:08,968 WARN  [org.apache.activemq.artemis.utils.actors.OrderedExecutor] Server locator is closed (maybe it was garbage collected)
+java.lang.IllegalStateException: Server locator is closed (maybe it was garbage collected)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.assertOpen(ServerLocatorImpl.java:1913)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:671)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:566)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:545)
+	at org.apache.activemq.artemis.core.server.cluster.ClusterController$ConnectRunnable.run(ClusterController.java:478)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
+	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
+2026-03-28 17:57:09,213 INFO  [org.apache.activemq.artemis] AMQ241005: Stopping embedded web server
+2026-03-28 17:57:09,225 INFO  [org.apache.activemq.artemis] AMQ241006: Stopped embedded web server
+2026-03-28 17:57:09,229 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [2d78b4cd-2a63-11f1-a10a-0a0027000007] stopped, uptime 3 minutes
+2026-03-28 18:03:46,907 WARN  [org.apache.activemq.artemis.core.server] AMQ222018: AIO was not located on this platform, it will fall back to using pure Java NIO. If your platform is Linux, install LibAIO to enable the AIO journal
+2026-03-28 18:03:46,916 WARN  [org.apache.activemq.artemis.core.server] AMQ222269: Please use a fixed value for "journal-pool-files". Default changed per https://issues.apache.org/jira/browse/ARTEMIS-1628
+2026-03-28 18:03:47,181 INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting Apache Artemis Server version 2.53.0
+2026-03-28 18:03:47,221 INFO  [org.apache.activemq.artemis.core.server] AMQ221000: Primary message broker is starting with configuration Broker Configuration (clustered=true,journalDirectory=data/journal,bindingsDirectory=data/bindings,largeMessagesDirectory=data/large-messages,pagingDirectory=data/paging)
+2026-03-28 18:03:50,224 INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+2026-03-28 18:03:50,260 WARN  [org.apache.activemq.artemis.core.server] AMQ222007: Security risk! Apache Artemis is running with the default cluster admin user and default password. Please see the cluster chapter in the Artemis User Guide for instructions on how to change this.
+2026-03-28 18:03:50,327 INFO  [org.apache.activemq.artemis.core.server] AMQ221057: Global Max Size is being adjusted to 1/2 of the JVM max size (-Xmx). being defined as 1073741824
+2026-03-28 18:03:50,412 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support for: CORE
+2026-03-28 18:03:50,414 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support for: AMQP
+2026-03-28 18:03:50,416 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support for: HORNETQ
+2026-03-28 18:03:50,417 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support for: MQTT
+2026-03-28 18:03:50,419 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support for: OPENWIRE
+2026-03-28 18:03:50,422 INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support for: STOMP
+2026-03-28 18:03:50,838 WARN  [org.apache.activemq.artemis.core.server] AMQ222165: No Dead Letter Address configured for queue demo.queue in AddressSettings
+2026-03-28 18:03:50,839 WARN  [org.apache.activemq.artemis.core.server] AMQ222166: No Expiry Address configured for queue demo.queue in AddressSettings
+2026-03-28 18:03:51,122 INFO  [org.apache.activemq.artemis.core.server] AMQ221080: Deploying address demo.queue supporting [ANYCAST]
+2026-03-28 18:03:51,125 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying ANYCAST queue demo.queue on address demo.queue
+2026-03-28 18:03:51,816 INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at localhost:61616 for protocols [CORE,MQTT,AMQP,HORNETQ,STOMP,OPENWIRE]
+2026-03-28 18:03:51,816 INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now active
+2026-03-28 18:03:51,816 INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache Artemis Message Broker version 2.53.0 [live-broker, nodeID=2d78b4cd-2a63-11f1-a10a-0a0027000007] 
+2026-03-28 18:03:51,839 INFO  [org.apache.activemq.artemis] AMQ241003: Starting embedded web server
+2026-03-28 18:03:52,518 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\journal\activemq-data-3.amq (size=10485760) to replica, origin=journal
+2026-03-28 18:03:52,953 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-1.bindings (size=1048576) to replica, origin=journal
+2026-03-28 18:03:52,963 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-8.bindings (size=1048576) to replica, origin=journal
+2026-03-28 18:03:52,979 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\data\bindings\activemq-bindings-2.bindings (size=1048576) to replica, origin=journal
+2026-03-28 18:03:53,114 INFO  [io.hawt.HawtioContextListener] Initialising Hawtio services
+2026-03-28 18:03:53,125 INFO  [io.hawt.jmx.JmxTreeWatcher] Welcome to Hawtio 4.6.2
+2026-03-28 18:03:53,148 INFO  [io.hawt.web.auth.AuthenticationConfiguration] Authentication throttling is enabled
+2026-03-28 18:03:53,155 INFO  [io.hawt.web.auth.AuthenticationConfiguration] Starting Hawtio authentication filter, JAAS realm: "activemq" authorized role(s): amq, role principal class names: org.apache.activemq.artemis.spi.core.security.jaas.RolePrincipal
+2026-03-28 18:03:53,155 INFO  [io.hawt.web.auth.AuthenticationConfiguration] Looking for OIDC configuration file in: C:\Users\vanma\IdeaProjects\artemis-ha-demo\instances\broker-live\etc/hawtio-oidc.properties
+2026-03-28 18:03:53,297 INFO  [io.hawt.web.auth.ClientRouteRedirectFilter] Hawtio ClientRouteRedirectFilter is using 1800 sec. HttpSession timeout
+2026-03-28 18:03:53,396 INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://localhost:8161
+2026-03-28 18:03:53,397 INFO  [org.apache.activemq.artemis] AMQ241002: Artemis Jolokia REST API available at http://localhost:8161/console/jolokia
+2026-03-28 18:03:53,397 INFO  [org.apache.activemq.artemis] AMQ241004: Artemis Console available at http://localhost:8161/console
+2026-03-28 18:03:59,697 INFO  [io.hawt.web.proxy.ProxyServlet] Proxy servlet is disabled
+2026-03-28 18:03:59,753 INFO  [io.hawt.web.auth.keycloak.KeycloakServlet] Keycloak integration is disabled
+2026-03-28 18:03:59,758 INFO  [io.hawt.web.auth.AuthConfigurationServlet] OpenID Connection integration is disabled
+2026-03-28 18:04:05,478 INFO  [io.hawt.web.auth.LoginServlet] Hawtio login is using 1800 sec. HttpSession timeout
+2026-03-28 18:04:05,643 INFO  [io.hawt.web.auth.LoginServlet] Logging in user: admin
+2026-03-28 18:11:21,822 WARN  [org.apache.activemq.artemis.core.server] AMQ222092: Connection to the backup node failed, removing replication now
+org.apache.activemq.artemis.api.core.ActiveMQRemoteDisconnectException: 
+	at org.apache.activemq.artemis.core.remoting.server.impl.RemotingServiceImpl.connectionDestroyed(RemotingServiceImpl.java:783)
+	at org.apache.activemq.artemis.core.remoting.impl.netty.NettyAcceptor$Listener.connectionDestroyed(NettyAcceptor.java:1032)
+	at org.apache.activemq.artemis.core.remoting.impl.netty.ActiveMQChannelHandler.lambda$channelInactive$0(ActiveMQChannelHandler.java:89)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
+	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
+2026-03-28 18:11:29,228 WARN  [org.apache.activemq.artemis.utils.actors.OrderedExecutor] Server locator is closed (maybe it was garbage collected)
+java.lang.IllegalStateException: Server locator is closed (maybe it was garbage collected)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.assertOpen(ServerLocatorImpl.java:1913)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.createSessionFactory(ServerLocatorImpl.java:671)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:566)
+	at org.apache.activemq.artemis.core.client.impl.ServerLocatorImpl.connect(ServerLocatorImpl.java:545)
+	at org.apache.activemq.artemis.core.server.cluster.ClusterController$ConnectRunnable.run(ClusterController.java:478)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:59)
+	at org.apache.activemq.artemis.utils.actors.OrderedExecutor.doTask(OrderedExecutor.java:32)
+	at org.apache.activemq.artemis.utils.actors.ProcessorBase.executePendingTasks(ProcessorBase.java:69)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at org.apache.activemq.artemis.utils.ActiveMQThreadFactory$1.run(ActiveMQThreadFactory.java:120)
+2026-03-28 18:11:29,396 INFO  [org.apache.activemq.artemis] AMQ241005: Stopping embedded web server
+2026-03-28 18:11:29,419 INFO  [io.hawt.HawtioContextListener] Destroying Hawtio services
+2026-03-28 18:11:29,439 INFO  [org.apache.activemq.artemis] AMQ241006: Stopped embedded web server
+2026-03-28 18:11:29,441 INFO  [org.apache.activemq.artemis.core.server] AMQ221002: Apache Artemis Message Broker version 2.53.0 [2d78b4cd-2a63-11f1-a10a-0a0027000007] stopped, uptime 7 minutes
